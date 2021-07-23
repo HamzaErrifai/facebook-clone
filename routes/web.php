@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+#Post deletion
 Route::get('/users', [PostController::class, 'getUsers']);
 Route::get('/posts', [PostController::class, 'getPosts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);
+Route::post('/post/', [PostController::class, 'store']);
+Route::delete('/post/{id}', [PostController::class, 'destroy']);
+
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/login');
+});

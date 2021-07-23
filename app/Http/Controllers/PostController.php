@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +41,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->user_id = Auth::user();
+
+        $post->save();
+        return redirect('/home');
     }
 
     /**
@@ -81,23 +93,25 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        return $post->delete();
     }
+
     public function getUsers()
     {
         $users = User::all();
         return $users;
     }
+
     public function getPosts()
     {
-        $posts = Post::all();
+        $posts = Auth::user()->posts;
         return $posts;
     }
+
     public function getPost($id)
     {
         $post = Post::find($id);
+        $this->authorize('view', $post);
         return $post;
     }
-    
-
 }
