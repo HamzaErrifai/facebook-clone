@@ -1,11 +1,10 @@
 import React from "react";
 
-
 function NavBar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top ">
             <a className="navbar-brand" href="#">
-                Navbar
+                <img src="/imgs/letter-f.svg" width="30" height="30" />
             </a>
             <button
                 className="navbar-toggler"
@@ -47,7 +46,7 @@ function NavBar() {
                             {window.Laravel.user}
                         </a>
                         <div
-                            className="dropdown-menu dropdown-menu-right"
+                            className="dropdown-menu"
                             aria-labelledby="navbarDropdown"
                         >
                             <a className="dropdown-item" href="/logout">

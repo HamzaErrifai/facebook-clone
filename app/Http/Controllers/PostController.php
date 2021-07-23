@@ -41,14 +41,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $post = new Post();
 
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
+        $post->title = $request->title;
+        $post->content = $request->content;
         $post->user_id = Auth::user();
 
         $post->save();
-        return redirect('/home');
+        return Response()->json(['etat' => true, 'id' => $post->id]);
     }
 
     /**

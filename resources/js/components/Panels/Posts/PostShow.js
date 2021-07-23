@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Post from "./Post";
+import CreatePost from "./CreatePost";
+import BigLabel from "../../utils/BigLabel";
 
 export class PostShow extends Component {
     constructor(props) {
@@ -23,10 +25,13 @@ export class PostShow extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>Posts</h1>
+            <div className="container post-show-container dummy-push mt-2 mb-2">
+                <CreatePost/>
+                <BigLabel txt="Posts"/>
                 {this.state.posts
-                    ? this.state.posts.map((elm) => <Post data={elm} />)
+                    ? this.state.posts.map((elm, key) => (
+                          <Post data={elm} key={key} />
+                      ))
                     : "Loading"}
             </div>
         );
