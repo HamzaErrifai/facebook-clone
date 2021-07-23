@@ -19,7 +19,9 @@
     'posts' => [],
 ]) !!};
     </script>
+    <script src="https://kit.fontawesome.com/873e4afb32.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+
 </body>
 
 </html>

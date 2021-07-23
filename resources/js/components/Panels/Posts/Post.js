@@ -4,7 +4,7 @@ export class Post extends Component {
     render() {
         const { data } = this.props;
         return (
-            <div className="card shadow-sm rounded" key={data.id}>
+            <div className="card shadow-sm rounded mb-2" key={data.id}>
                 <div className="card-body">
                     <h6 className="card-subtitle mb-2 text-muted">
                         {window.Laravel.user}

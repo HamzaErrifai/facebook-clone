@@ -46,10 +46,10 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->user_id = Auth::user();
+        $post->user_id = Auth::user()->id;
 
         $post->save();
-        return Response()->json(['etat' => true, 'id' => $post->id]);
+        return Response()->json(['etat' => true, 'post' => $post]);
     }
 
     /**

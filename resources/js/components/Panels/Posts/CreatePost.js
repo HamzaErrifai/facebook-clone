@@ -6,19 +6,19 @@ export class CreatePost extends Component {
         super(props);
 
         this.state = {
-            title: "",
-            content: "",
+            posts: { title: "", content: "" },
+            open: false,
         };
     }
     handleTitleChange = (e) => {
         this.setState({
-            title: e.target.value,
+            posts: { title: e.target.value, ...this.state.posts },
         });
     };
 
     handleContentChange = (e) => {
         this.setState({
-            content: e.target.value,
+            posts: { content: e.target.value, ...this.state.posts },
         });
     };
 
@@ -26,23 +26,43 @@ export class CreatePost extends Component {
         e.preventDefault();
         this.createPost();
     };
+    handleCreateBtn = (e) => {
+        e.preventDefault();
+        this.setState({ open: true });
+    };
 
     createPost = () => {
         axios
-            .post(window.Laravel.url + "/addpost", this.state)
-            .then(function (response) {
-                if (response.data.etat) console.log(response);
+            .post(window.Laravel.url + "/addpost", this.state.posts)
+            .then((response) => {
+                if (response.data.etat) {
+                    this.props.setPosts(response.data.post);
+                    this.setState({
+                        title: "",
+                        content: "",
+                    });
+                }
             })
             .catch(function (error) {
                 console.log(error);
             });
     };
 
+    handleClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
+
     render() {
-        return (
-            <div className="shadow-sm bg-white">
+        return this.state.open ? (
+            <div className="shadow-sm bg-white rounded">
                 <div className="border-bottom">
-                    <BigLabel txt="Create Post" />
+                    <BigLabel
+                        txt="Create Post"
+                        closeBtn={true}
+                        handleClose={this.handleClose}
+                    />
                 </div>
                 <form className="p-3" onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -51,6 +71,7 @@ export class CreatePost extends Component {
                             className="form-control"
                             placeholder="Title"
                             onChange={this.handleTitleChange}
+                            value={this.state.title}
                         />
                     </div>
 
@@ -60,12 +81,22 @@ export class CreatePost extends Component {
                             rows="3"
                             placeholder="Content of the post"
                             onChange={this.handleContentChange}
+                            value={this.state.content}
                         ></textarea>
                     </div>
                     <button className="btn btn-primary btn-block">
                         Create Post
                     </button>
                 </form>
+            </div>
+        ) : (
+            <div className="shadow-sm bg-white rounded">
+                <button
+                    className="btn btn-block bg-gray"
+                    onClick={this.handleCreateBtn}
+                >
+                    What's on your mind ?
+                </button>
             </div>
         );
     }

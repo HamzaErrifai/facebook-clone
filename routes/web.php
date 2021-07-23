@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-#'Post'
+#Posts
 Route::get('/users', [PostController::class, 'getUsers']);
 Route::get('/posts', [PostController::class, 'getPosts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);

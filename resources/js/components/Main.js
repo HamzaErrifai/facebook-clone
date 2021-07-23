@@ -5,7 +5,6 @@ import "../../css/app.css";
 import PostShow from "./Panels/Posts/PostShow";
 
 export class Main extends Component {
-    
     render() {
         return (
             <>

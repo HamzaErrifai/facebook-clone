@@ -2007,6 +2007,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2047,13 +2051,17 @@ var CreatePost = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleTitleChange", function (e) {
       _this.setState({
-        title: e.target.value
+        posts: _objectSpread({
+          title: e.target.value
+        }, _this.state.posts)
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleContentChange", function (e) {
       _this.setState({
-        content: e.target.value
+        posts: _objectSpread({
+          content: e.target.value
+        }, _this.state.posts)
       });
     });
 
@@ -2063,17 +2071,41 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       _this.createPost();
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleCreateBtn", function (e) {
+      e.preventDefault();
+
+      _this.setState({
+        open: true
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "createPost", function () {
-      axios.post(window.Laravel.url + "/addpost", _this.state).then(function (response) {
-        if (response.data.etat) console.log(response);
+      axios.post(window.Laravel.url + "/addpost", _this.state.posts).then(function (response) {
+        if (response.data.etat) {
+          _this.props.setPosts(response.data.post);
+
+          _this.setState({
+            title: "",
+            content: ""
+          });
+        }
       })["catch"](function (error) {
         console.log(error);
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleClose", function () {
+      _this.setState({
+        open: false
+      });
+    });
+
     _this.state = {
-      title: "",
-      content: ""
+      posts: {
+        title: "",
+        content: ""
+      },
+      open: false
     };
     return _this;
   }
@@ -2081,12 +2113,14 @@ var CreatePost = /*#__PURE__*/function (_Component) {
   _createClass(CreatePost, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "shadow-sm bg-white",
+      return this.state.open ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "shadow-sm bg-white rounded",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "border-bottom",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_utils_BigLabel__WEBPACK_IMPORTED_MODULE_1__.default, {
-            txt: "Create Post"
+            txt: "Create Post",
+            closeBtn: true,
+            handleClose: this.handleClose
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
           className: "p-3",
@@ -2097,7 +2131,8 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               type: "text",
               className: "form-control",
               placeholder: "Title",
-              onChange: this.handleTitleChange
+              onChange: this.handleTitleChange,
+              value: this.state.title
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "form-group",
@@ -2105,13 +2140,21 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               className: "form-control",
               rows: "3",
               placeholder: "Content of the post",
-              onChange: this.handleContentChange
+              onChange: this.handleContentChange,
+              value: this.state.content
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             className: "btn btn-primary btn-block",
             children: "Create Post"
           })]
         })]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "shadow-sm bg-white rounded",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "btn btn-block bg-gray",
+          onClick: this.handleCreateBtn,
+          children: "What's on your mind ?"
+        })
       });
     }
   }]);
@@ -2177,7 +2220,7 @@ var Post = /*#__PURE__*/function (_Component) {
     value: function render() {
       var data = this.props.data;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "card shadow-sm rounded",
+        className: "card shadow-sm rounded mb-2",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "card-body",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h6", {
@@ -2274,6 +2317,17 @@ var PostShow = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
+    _defineProperty(_assertThisInitialized(_this), "setPosts", function (post) {
+      console.log(post);
+      console.log(_this.state.posts);
+
+      _this.setState({
+        posts: _this.state.posts.concat(post)
+      }, function () {
+        _this.sortPosts();
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "fetchData", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var api;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2288,6 +2342,8 @@ var PostShow = /*#__PURE__*/function (_Component) {
 
               _this.setState({
                 posts: api.data
+              }, function () {
+                _this.sortPosts();
               });
 
             case 4:
@@ -2297,6 +2353,14 @@ var PostShow = /*#__PURE__*/function (_Component) {
         }
       }, _callee);
     })));
+
+    _defineProperty(_assertThisInitialized(_this), "sortPosts", function (e) {
+      var newPostList = _this.state.posts.reverse();
+
+      _this.setState({
+        posts: newPostList
+      });
+    });
 
     _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
       _this.fetchData();
@@ -2309,16 +2373,23 @@ var PostShow = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(PostShow, [{
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate() {
+      return true;
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "container post-show-container dummy-push mt-2 mb-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_BigLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
-          txt: "Posts"
-        }), this.state.posts ? this.state.posts.map(function (elm, key) {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
+          setPosts: this.setPosts
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_BigLabel__WEBPACK_IMPORTED_MODULE_5__.default, {
+          txt: "My Posts"
+        }), this.state.posts ? this.state.posts.map(function (elm, i) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
             data: elm
-          }, key);
+          }, i);
         }) : "Loading"]
       });
     }
@@ -2443,10 +2514,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function BigLabel(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-    className: "text-center font-weight-bold",
-    children: props.txt
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h1", {
+    className: "font-weight-bold d-flex justify-content-between",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "p-2",
+      children: props.txt
+    }), props.closeBtn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      type: "button",
+      className: " align-content-start btn btn-white btn-circle btn-md btn-lightGray",
+      onClick: props.handleClose,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        className: "fas fa-times"
+      })
+    })]
   });
 }
 
@@ -6912,7 +6994,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container{\r\n  max-width: 50%;\r\n}\r\n\r\n.dummy-push{\r\n  margin-top: 70px!important;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 60%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray{\r\n  background-color: rgba(211, 211, 211, 0.445);\r\n  color: white;\r\n}\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
