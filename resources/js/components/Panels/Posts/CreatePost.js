@@ -6,24 +6,22 @@ export class CreatePost extends Component {
         super(props);
         this.inputRef = React.createRef();
         this.state = {
-            posts: { title: "", content: "" },
+            posts: { title: "", content: "", name: window.Laravel.user },
             open: false,
         };
     }
     handleTitleChange = (e) => {
-        console.log(this.state);
-        this.setState({
-            posts: { title: e.target.value, ...this.state.posts },
-            ...this.state,
-        });
+        // console.log(this.state.posts);
+        this.setState((prevState) => ({
+            posts: { ...prevState.posts, title: e.target.value },
+        }));
     };
 
     handleContentChange = (e) => {
-        console.log(this.state);
-        this.setState({
-            posts: { title: e.target.value, ...this.state.posts },
-            ...this.state,
-        });
+        // console.log(this.state.posts);
+        this.setState((prevState) => ({
+            posts: { ...prevState.posts, content: e.target.value },
+        }));
     };
 
     handleSubmit = (e) => {
@@ -38,21 +36,21 @@ export class CreatePost extends Component {
     };
 
     createPost = () => {
-        console.log(this.state.posts);
-        // axios
-        //     .post(window.Laravel.url + "/addpost", this.state.posts)
-        //     .then((response) => {
-        //         if (response.data.etat) {
-        //             this.props.setPosts(response.data.post);
-        //             this.setState({
-        //                 title: "",
-        //                 content: "",
-        //             });
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+        // console.log(this.state.posts);
+        axios
+            .post(window.Laravel.url + "/addpost", this.state.posts)
+            .then((response) => {
+                if (response.data.etat) {
+                    this.props.setPosts(response.data.post);
+                    this.setState({
+                        title: "",
+                        content: "",
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     handleClose = () => {

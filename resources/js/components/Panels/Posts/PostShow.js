@@ -14,8 +14,6 @@ export class PostShow extends Component {
     }
 
     setPosts = (post) => {
-        console.log(post);
-        console.log(this.state.posts);
         this.setState(
             {
                 posts: this.state.posts.concat(post),

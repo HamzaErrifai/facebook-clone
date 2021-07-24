@@ -2052,23 +2052,25 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleTitleChange", function (e) {
-      console.log(_this.state);
-
-      _this.setState(_objectSpread({
-        posts: _objectSpread({
-          title: e.target.value
-        }, _this.state.posts)
-      }, _this.state));
+      // console.log(this.state.posts);
+      _this.setState(function (prevState) {
+        return {
+          posts: _objectSpread(_objectSpread({}, prevState.posts), {}, {
+            title: e.target.value
+          })
+        };
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleContentChange", function (e) {
-      console.log(_this.state);
-
-      _this.setState(_objectSpread({
-        posts: _objectSpread({
-          title: e.target.value
-        }, _this.state.posts)
-      }, _this.state));
+      // console.log(this.state.posts);
+      _this.setState(function (prevState) {
+        return {
+          posts: _objectSpread(_objectSpread({}, prevState.posts), {}, {
+            content: e.target.value
+          })
+        };
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
@@ -2088,20 +2090,19 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "createPost", function () {
-      console.log(_this.state.posts); // axios
-      //     .post(window.Laravel.url + "/addpost", this.state.posts)
-      //     .then((response) => {
-      //         if (response.data.etat) {
-      //             this.props.setPosts(response.data.post);
-      //             this.setState({
-      //                 title: "",
-      //                 content: "",
-      //             });
-      //         }
-      //     })
-      //     .catch(function (error) {
-      //         console.log(error);
-      //     });
+      // console.log(this.state.posts);
+      axios.post(window.Laravel.url + "/addpost", _this.state.posts).then(function (response) {
+        if (response.data.etat) {
+          _this.props.setPosts(response.data.post);
+
+          _this.setState({
+            title: "",
+            content: ""
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleClose", function () {
@@ -2114,7 +2115,8 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     _this.state = {
       posts: {
         title: "",
-        content: ""
+        content: "",
+        name: window.Laravel.user
       },
       open: false
     };
@@ -2392,9 +2394,6 @@ var PostShow = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "setPosts", function (post) {
-      console.log(post);
-      console.log(_this.state.posts);
-
       _this.setState({
         posts: _this.state.posts.concat(post)
       }, function () {
