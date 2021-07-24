@@ -58,7 +58,7 @@ export class Post extends Component {
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                <i class="fas fa-ellipsis-h"></i>
+                                <i className="fas fa-ellipsis-h"></i>
                             </a>
 
                             <div

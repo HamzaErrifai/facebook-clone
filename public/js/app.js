@@ -2307,7 +2307,7 @@ var Post = /*#__PURE__*/function (_Component) {
                 "aria-haspopup": "true",
                 "aria-expanded": "false",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                  "class": "fas fa-ellipsis-h"
+                  className: "fas fa-ellipsis-h"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "dropdown-menu",
