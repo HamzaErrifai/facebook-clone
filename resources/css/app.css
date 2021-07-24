@@ -69,6 +69,13 @@
     height: 90vh;
 }
 
+/* .dropdown-toggle::after{
+    display: none;
+} */
+.dropleft .dropdown-toggle::before {
+    display: none;
+}
+
 @media screen and (max-width: 895px) {
     .post-show-container {
         max-width: 90%;
