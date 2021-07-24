@@ -11,6 +11,7 @@
 
 <body>
     <div id="main"></div>
+    <div id="portal-root"></div>
     <script>
         window.Laravel = {!! json_encode([
     'csrftoken' => csrf_token(),

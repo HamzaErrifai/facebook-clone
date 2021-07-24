@@ -85,9 +85,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $req)
     {
-        //
+        $post = Post::find($req->id);
+        $post->title = $req->title;
+        $post->content = $req->content;
+
+        $post->save();
+        return Response()->json(['etat' => true]);
     }
 
     /**

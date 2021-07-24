@@ -28,11 +28,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users', [PostController::class, 'getUsers']);
 Route::get('/myposts', [PostController::class, 'getPosts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);
-Route::post('/addpost', [PostController::class, 'store']); 
-Route::post('/likepost', [PostController::class, 'likePost']); 
-Route::delete('/dislikepost/{id}', [PostController::class, 'dislikePost']); 
+
+Route::put('/post/{id}', [PostController::class, 'update']);
+Route::post('/addpost', [PostController::class, 'store']);
 Route::delete('/post/{id}', [PostController::class, 'destroy']);
 
+Route::post('/likepost', [PostController::class, 'likePost']);
+Route::delete('/dislikepost/{id}', [PostController::class, 'dislikePost']);
 
 
 
