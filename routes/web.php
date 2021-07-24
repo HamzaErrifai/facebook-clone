@@ -26,10 +26,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 #Posts
 Route::get('/users', [PostController::class, 'getUsers']);
-Route::get('/posts', [PostController::class, 'getPosts']);
+Route::get('/myposts', [PostController::class, 'getPosts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);
 Route::post('/addpost', [PostController::class, 'store']); 
+Route::post('/likepost', [PostController::class, 'likePost']); 
+Route::delete('/dislikepost', [PostController::class, 'dislikePost']); 
 Route::delete('/post/{id}', [PostController::class, 'destroy']);
+
+
+
 
 Route::get('logout', function () {
     Auth::logout();

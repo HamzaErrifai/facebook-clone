@@ -30,7 +30,7 @@ export class PostShow extends Component {
         return true;
     }
     fetchData = async () => {
-        const api = await axios("/posts");
+        const api = await axios("/myposts");
         this.setState(
             {
                 posts: api.data,
@@ -58,8 +58,8 @@ export class PostShow extends Component {
 
                 <BigLabel txt="My Posts" />
                 {this.state.posts
-                    ? this.state.posts.map((elm, i) => (
-                          <Post data={elm} key={i} />
+                    ? this.state.posts.map((elm) => (
+                          <Post data={elm} key={elm.id} />
                       ))
                     : "Loading"}
             </div>

@@ -4,21 +4,25 @@ import BigLabel from "../../utils/BigLabel";
 export class CreatePost extends Component {
     constructor(props) {
         super(props);
-
+        this.inputRef = React.createRef();
         this.state = {
             posts: { title: "", content: "" },
             open: false,
         };
     }
     handleTitleChange = (e) => {
+        console.log(this.state);
         this.setState({
             posts: { title: e.target.value, ...this.state.posts },
+            ...this.state,
         });
     };
 
     handleContentChange = (e) => {
+        console.log(this.state);
         this.setState({
-            posts: { content: e.target.value, ...this.state.posts },
+            posts: { title: e.target.value, ...this.state.posts },
+            ...this.state,
         });
     };
 
@@ -28,24 +32,27 @@ export class CreatePost extends Component {
     };
     handleCreateBtn = (e) => {
         e.preventDefault();
-        this.setState({ open: true });
+        this.setState({ open: true }, () => {
+            this.inputRef.current.focus();
+        });
     };
 
     createPost = () => {
-        axios
-            .post(window.Laravel.url + "/addpost", this.state.posts)
-            .then((response) => {
-                if (response.data.etat) {
-                    this.props.setPosts(response.data.post);
-                    this.setState({
-                        title: "",
-                        content: "",
-                    });
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        console.log(this.state.posts);
+        // axios
+        //     .post(window.Laravel.url + "/addpost", this.state.posts)
+        //     .then((response) => {
+        //         if (response.data.etat) {
+        //             this.props.setPosts(response.data.post);
+        //             this.setState({
+        //                 title: "",
+        //                 content: "",
+        //             });
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
     };
 
     handleClose = () => {
@@ -72,6 +79,7 @@ export class CreatePost extends Component {
                             placeholder="Title"
                             onChange={this.handleTitleChange}
                             value={this.state.title}
+                            ref={this.inputRef}
                         />
                     </div>
 
@@ -91,12 +99,24 @@ export class CreatePost extends Component {
             </div>
         ) : (
             <div className="shadow-sm bg-white rounded">
-                <button
-                    className="btn btn-block bg-gray"
-                    onClick={this.handleCreateBtn}
-                >
-                    What's on your mind ?
-                </button>
+                <div className="pl-4 pr-4 pt-2 pb-2">
+                    <button
+                        className="btn btn-block bg-gray btn-n-sm"
+                        onClick={this.handleCreateBtn}
+                    >
+                        What's on your mind ?
+                    </button>
+                </div>
+                <div className="border-top text-center pt-1 pb-1">
+                    <button className="btn btn-n-sm fnt-size-15 btn-lightGray">
+                        <i
+                            className="far fa-image"
+                            style={{ color: "green" }}
+                        ></i>
+                        <span> </span>
+                        Photos
+                    </button>
+                </div>
             </div>
         );
     }

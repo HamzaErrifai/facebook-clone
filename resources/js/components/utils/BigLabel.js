@@ -7,7 +7,7 @@ function BigLabel(props) {
             {props.closeBtn && (
                 <button
                     type="button"
-                    className=" align-content-start btn btn-white btn-circle btn-md btn-lightGray"
+                    className="btn btn-white btn-circle btn-md btn-lightGray mr-1 mt-1"
                     onClick={props.handleClose}
                 >
                     <i className="fas fa-times"></i>

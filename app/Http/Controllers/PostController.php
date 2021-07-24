@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -105,14 +106,44 @@ class PostController extends Controller
 
     public function getPosts()
     {
+        $posts_to_send = collect();
         $posts = Auth::user()->posts;
-        return $posts;
+        foreach ($posts as $post) {
+            $user = User::find($post->user_id);
+            $like = Like::where('post_id', $post->id)->get();
+            $post_to_send = array_merge($user->toArray(), $post->toArray());
+            if (!empty($like)) {
+                $post_to_send = array_merge($like->toArray(), $post_to_send);
+            }
+            $posts_to_send->push($post_to_send);
+        }
+        return $posts_to_send;
     }
 
     public function getPost($id)
     {
         $post = Post::find($id);
+        $user = User::find($post->user_id);
+        $post_to_send = array_merge($user->toArray(), $post->toArray());
+
         $this->authorize('view', $post);
-        return $post;
+        return $post_to_send;
+    }
+
+    public function likePost(Request $request)
+    {
+        $like = new Like();
+
+        $like->post_id = $request->post_id;
+        $like->user_id = $request->user_id;
+
+        $like->save();
+        return Response()->json(['etat' => true]);
+    }
+
+    public function dislikePost(Like $like)
+    {
+        $like->delete();
+        return Response()->json(['etat' => true]);
     }
 }
