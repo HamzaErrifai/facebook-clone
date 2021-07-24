@@ -14,14 +14,9 @@ export class PostShow extends Component {
     }
 
     setPosts = (post) => {
-        this.setState(
-            {
-                posts: this.state.posts.concat(post),
-            },
-            () => {
-                this.sortPosts();
-            }
-        );
+        this.setState({
+            posts: this.state.posts.concat(post).reverse(),
+        });
     };
 
     shouldComponentUpdate() {
@@ -29,19 +24,8 @@ export class PostShow extends Component {
     }
     fetchData = async () => {
         const api = await axios("/myposts");
-        this.setState(
-            {
-                posts: api.data,
-            },
-            () => {
-                this.sortPosts();
-            }
-        );
-    };
-    sortPosts = (e) => {
-        const newPostList = this.state.posts.reverse();
         this.setState({
-            posts: newPostList,
+            posts: api.data.reverse(),
         });
     };
 
@@ -57,7 +41,7 @@ export class PostShow extends Component {
                 <BigLabel txt="My Posts" />
                 {this.state.posts
                     ? this.state.posts.map((elm) => (
-                          <Post data={elm} key={elm.id} />
+                          <Post key={elm.id} data={elm} />
                       ))
                     : "Loading"}
             </div>

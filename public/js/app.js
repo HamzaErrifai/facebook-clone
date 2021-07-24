@@ -2052,7 +2052,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleTitleChange", function (e) {
-      // console.log(this.state.posts);
+      // console.log(this.state.posts)
       _this.setState(function (prevState) {
         return {
           posts: _objectSpread(_objectSpread({}, prevState.posts), {}, {
@@ -2063,7 +2063,6 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleContentChange", function (e) {
-      // console.log(this.state.posts);
       _this.setState(function (prevState) {
         return {
           posts: _objectSpread(_objectSpread({}, prevState.posts), {}, {
@@ -2085,19 +2084,22 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       _this.setState({
         open: true
       }, function () {
-        _this.inputRef.current.focus();
+        _this.contentRef.current.focus();
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "createPost", function () {
-      // console.log(this.state.posts);
       axios.post(window.Laravel.url + "/addpost", _this.state.posts).then(function (response) {
         if (response.data.etat) {
           _this.props.setPosts(response.data.post);
 
           _this.setState({
-            title: "",
-            content: ""
+            posts: {
+              title: "",
+              content: "",
+              name: window.Laravel.user
+            },
+            open: false
           });
         }
       })["catch"](function (error) {
@@ -2111,7 +2113,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       });
     });
 
-    _this.inputRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.contentRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.state = {
       posts: {
         title: "",
@@ -2145,8 +2147,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               className: "form-control",
               placeholder: "Title",
               onChange: this.handleTitleChange,
-              value: this.state.title,
-              ref: this.inputRef
+              value: this.state.title
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "form-group",
@@ -2155,7 +2156,8 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               rows: "3",
               placeholder: "Content of the post",
               onChange: this.handleContentChange,
-              value: this.state.content
+              value: this.state.content,
+              ref: this.contentRef
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             className: "btn btn-primary btn-block",
@@ -2395,9 +2397,7 @@ var PostShow = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "setPosts", function (post) {
       _this.setState({
-        posts: _this.state.posts.concat(post)
-      }, function () {
-        _this.sortPosts();
+        posts: _this.state.posts.concat(post).reverse()
       });
     });
 
@@ -2414,9 +2414,7 @@ var PostShow = /*#__PURE__*/function (_Component) {
               api = _context.sent;
 
               _this.setState({
-                posts: api.data
-              }, function () {
-                _this.sortPosts();
+                posts: api.data.reverse()
               });
 
             case 4:
@@ -2426,14 +2424,6 @@ var PostShow = /*#__PURE__*/function (_Component) {
         }
       }, _callee);
     })));
-
-    _defineProperty(_assertThisInitialized(_this), "sortPosts", function (e) {
-      var newPostList = _this.state.posts.reverse();
-
-      _this.setState({
-        posts: newPostList
-      });
-    });
 
     _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
       _this.fetchData();

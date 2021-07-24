@@ -50,7 +50,10 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->save();
-        return Response()->json(['etat' => true, 'post' => $post]);
+
+        $user = User::find($post->user_id);
+        $post_to_send = array_merge($user->toArray(), $post->toArray());
+        return Response()->json(['etat' => true, 'post' => $post_to_send]);
     }
 
     /**
