@@ -2315,15 +2315,13 @@ var Post = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   className: "dropdown-item",
                   href: "#",
-                  children: "Action"
+                  disabled: true,
+                  children: "Edit"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   className: "dropdown-item",
                   href: "#",
-                  children: "Another action"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                  className: "dropdown-item",
-                  href: "#",
-                  children: "Something else here"
+                  disabled: true,
+                  children: "Delete"
                 })]
               })]
             })]

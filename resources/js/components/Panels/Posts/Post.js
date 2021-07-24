@@ -65,14 +65,11 @@ export class Post extends Component {
                                 className="dropdown-menu"
                                 aria-labelledby="dropdownMenuLink"
                             >
-                                <a className="dropdown-item" href="#">
-                                    Action
+                                <a className="dropdown-item" href="#" disabled>
+                                    Edit
                                 </a>
-                                <a className="dropdown-item" href="#">
-                                    Another action
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    Something else here
+                                <a className="dropdown-item" href="#" disabled>
+                                    Delete
                                 </a>
                             </div>
                         </div>
