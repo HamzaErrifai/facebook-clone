@@ -141,8 +141,9 @@ class PostController extends Controller
         return Response()->json(['etat' => true]);
     }
 
-    public function dislikePost(Like $like)
+    public function dislikePost($id)
     {
+        $like = Like::find($id);
         $like->delete();
         return Response()->json(['etat' => true]);
     }

@@ -2248,13 +2248,13 @@ var Post = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleLikeClick", function () {
       var joinedLike = {
-        post_id: _this.props.liked,
+        post_id: _this.props.data.id,
         user_id: _this.props.data.user_id
       };
 
       if (_this.state.liked) {
         //dislike
-        axios["delete"]("/dislikepost", joinedLike).then(function (response) {
+        axios["delete"]("/dislikepost/" + _this.props.data[0].id).then(function (response) {
           if (response.data.etat) _this.setState({
             liked: false
           });
@@ -2282,12 +2282,7 @@ var Post = /*#__PURE__*/function (_Component) {
 
   _createClass(Post, [{
     key: "render",
-    value: // componentDidMount = () => {
-    //     this.setState({
-    //         liked: ,
-    //     });
-    // };
-    function render() {
+    value: function render() {
       var data = this.props.data;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "card shadow-sm rounded mb-2",
@@ -2310,7 +2305,7 @@ var Post = /*#__PURE__*/function (_Component) {
               className: "btn btn-lightGray",
               onClick: this.handleLikeClick,
               children: this.state.liked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                className: "fas fa-thumbs-up"
+                className: "fas fa-thumbs-up text-primary"
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
                 className: "far fa-thumbs-up"
               })

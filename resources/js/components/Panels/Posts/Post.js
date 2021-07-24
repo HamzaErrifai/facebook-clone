@@ -12,13 +12,13 @@ export class Post extends Component {
 
     handleLikeClick = () => {
         const joinedLike = {
-            post_id: this.props.liked,
+            post_id: this.props.data.id,
             user_id: this.props.data.user_id,
         };
         if (this.state.liked) {
             //dislike
             axios
-                .delete("/dislikepost", joinedLike)
+                .delete("/dislikepost/" + this.props.data[0].id)
                 .then((response) => {
                     if (response.data.etat) this.setState({ liked: false });
                 })
@@ -37,11 +37,6 @@ export class Post extends Component {
                 });
         }
     };
-    // componentDidMount = () => {
-    //     this.setState({
-    //         liked: ,
-    //     });
-    // };
 
     render() {
         const { data } = this.props;
@@ -63,7 +58,7 @@ export class Post extends Component {
                             onClick={this.handleLikeClick}
                         >
                             {this.state.liked ? (
-                                <i className="fas fa-thumbs-up"></i>
+                                <i className="fas fa-thumbs-up text-primary"></i>
                             ) : (
                                 <i className="far fa-thumbs-up"></i>
                             )}

@@ -30,7 +30,7 @@ Route::get('/myposts', [PostController::class, 'getPosts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);
 Route::post('/addpost', [PostController::class, 'store']); 
 Route::post('/likepost', [PostController::class, 'likePost']); 
-Route::delete('/dislikepost', [PostController::class, 'dislikePost']); 
+Route::delete('/dislikepost/{id}', [PostController::class, 'dislikePost']); 
 Route::delete('/post/{id}', [PostController::class, 'destroy']);
 
 
