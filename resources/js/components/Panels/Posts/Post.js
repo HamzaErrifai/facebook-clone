@@ -62,14 +62,14 @@ export class Post extends Component {
                             </a>
 
                             <div
-                                className="dropdown-menu"
+                                className="dropdown-menu shadow-sm"
                                 aria-labelledby="dropdownMenuLink"
                             >
                                 <a className="dropdown-item" href="#" disabled>
-                                    Edit
+                                    <i className="far fa-edit"></i> Edit
                                 </a>
                                 <a className="dropdown-item" href="#" disabled>
-                                    Delete
+                                <i className="far fa-trash-alt"></i> Delete
                                 </a>
                             </div>
                         </div>

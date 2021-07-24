@@ -101,10 +101,10 @@ export class CreatePost extends Component {
             <div className="shadow-sm bg-white rounded">
                 <div className="pl-4 pr-4 pt-2 pb-2">
                     <button
-                        className="btn btn-block bg-gray btn-n-sm"
+                        className="btn btn-block bg-lightGray btn-n-sm"
                         onClick={this.handleCreateBtn}
                     >
-                        What's on your mind ?
+                        What's on your mind?
                     </button>
                 </div>
                 <div className="border-top text-center pt-1 pb-1">

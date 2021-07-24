@@ -46,7 +46,7 @@
     text-align: center;
 }
 .btn-n-sm:hover {
-    background-color: rgba(211, 211, 211, 0.315);
+    background-color: rgba(211, 211, 211, 0.390);
 }
 
 .btn-n-sm:focus {
@@ -68,7 +68,9 @@
     width: 100vw;
     height: 90vh;
 }
-
+.bg-lightGray{
+    background-color: rgba(211, 211, 211, 0.315);
+}
 /* .dropdown-toggle::after{
     display: none;
 } */
