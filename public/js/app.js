@@ -2247,11 +2247,6 @@ var Post = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleLikeClick", function () {
-      var joinedLike = {
-        post_id: _this.props.data.id,
-        user_id: _this.props.data.user_id
-      };
-
       if (_this.state.liked) {
         //dislike
         axios["delete"]("/dislikepost/" + _this.props.data[0].id).then(function (response) {
@@ -2263,6 +2258,10 @@ var Post = /*#__PURE__*/function (_Component) {
         });
       } else {
         //like
+        var joinedLike = {
+          post_id: _this.props.data.id,
+          user_id: _this.props.data.user_id
+        };
         axios.post("/likepost", joinedLike).then(function (response) {
           if (response.data.etat) _this.setState({
             liked: true
