@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AuthConsumer } from "../../contexts/AuthContext";
 
 function NavBar() {
     return (
@@ -20,63 +19,56 @@ function NavBar() {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                <AuthConsumer>
-                    {(value) =>
-                        value ? (
-                            <ul className="navbar-nav">
-                                <li className="nav-item active">
-                                    <Link className="nav-link" to="/">
-                                        Home
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/messages">
-                                        Messages
-                                    </Link>
-                                </li>
+                {window.Laravel.user != null ? (
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <Link className="nav-link" to="/">
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/profile">
+                                Profile
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/messages">
+                                Messages
+                            </Link>
+                        </li>
 
-                                <li className="nav-item dropdown ">
-                                    <a
-                                        className="nav-link dropdown-toggle"
-                                        href="#"
-                                        id="navbarDropdownMenuLink"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                    >
-                                        {window.Laravel.user}
-                                    </a>
-                                    <div
-                                        className="dropdown-menu ml-auto"
-                                        aria-labelledby="navbarDropdown"
-                                    >
-                                        <Link
-                                            className="dropdown-item"
-                                            to="/logout"
-                                        >
-                                            logout
-                                        </Link>
-                                    </div>
-                                </li>
-                            </ul>
-                        ) : (
-                            <div className="ml-auto">
-                                <a className="btn btn-secondary" href="/login">
-                                    Log in
-                                </a>
-                                <span> </span>
-                                <a className="btn btn-primary" href="/register">
-                                    Register
-                                </a>
+                        <li className="nav-item dropdown ">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                {window.Laravel.user}
+                            </a>
+                            <div
+                                className="dropdown-menu ml-auto"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <Link className="dropdown-item" to="/logout">
+                                    logout
+                                </Link>
                             </div>
-                        )
-                    }
-                </AuthConsumer>
+                        </li>
+                    </ul>
+                ) : (
+                    <div className="ml-auto">
+                        <a className="btn btn-secondary" href="/login">
+                            Log in
+                        </a>
+                        <span> </span>
+                        <a className="btn btn-primary" href="/register">
+                            Register
+                        </a>
+                    </div>
+                )}
             </div>
         </nav>
     );

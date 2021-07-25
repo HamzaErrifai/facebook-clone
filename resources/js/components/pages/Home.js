@@ -13,19 +13,13 @@ export class Home extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({
-            loggedIn: this.context,
-        });
+        this.setState();
     };
     render() {
         return (
-            <>
-                <AuthConsumer>
-                    {(value) =>
-                        value && this.state.loggedIn ? <PostShow /> : <Welcome />
-                    }
-                </AuthConsumer>
-            </>
+            <AuthConsumer>
+                {(value) => (value ? <PostShow /> : <Welcome />)}
+            </AuthConsumer>
         );
     }
 }
