@@ -2097,18 +2097,22 @@ var Main = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
-      axios__WEBPACK_IMPORTED_MODULE_8___default().get("/api/isconnected").then(function (resp) {
-        if (resp.data.status == 200) {
-          _this.setState({
-            isLoading: false
-          });
-        }
+      if (window.Laravel.user == null) {
+        axios__WEBPACK_IMPORTED_MODULE_8___default().get("/api/isconnected").then(function (resp) {
+          if (resp.data.status == 200) {
+            _this.setState({
+              isLoading: false
+            });
+          }
 
-        _this.setState({
-          isConnected: resp.data.etat
-        }, function () {
-          _this.context = _this.state.isConnected;
+          _this.setState({
+            isConnected: resp.data.etat
+          }, function () {
+            _this.context = _this.state.isConnected;
+          });
         });
+      } else _this.setState({
+        isConnected: true
       });
     });
 
@@ -2747,77 +2751,62 @@ function NavBar() {
         width: "30",
         height: "30"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: "navbar-toggler",
-      type: "button",
-      "data-toggle": "collapse",
-      "data-target": "#navbarNavDropdown",
-      "aria-controls": "navbarNavDropdown",
-      "aria-expanded": "false",
-      "aria-label": "Toggle navigation",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: "navbar-toggler-icon"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "collapse navbar-collapse",
-      id: "navbarNavDropdown",
-      children: window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-        className: "navbar-nav",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          className: "nav-item active",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            className: "nav-link",
-            to: "/",
-            children: "Home"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            className: "nav-link",
-            to: "/profile",
-            children: "Profile"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            className: "nav-link",
-            to: "/messages",
-            children: "Messages"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-          className: "nav-item dropdown ",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-            className: "nav-link dropdown-toggle",
-            href: "#",
-            id: "navbarDropdownMenuLink",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false",
-            children: window.Laravel.user
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "dropdown-menu ml-auto",
-            "aria-labelledby": "navbarDropdown",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-              className: "dropdown-item",
-              to: "/logout",
-              children: "logout"
-            })
-          })]
-        })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "ml-auto",
+    }), window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+      className: "nav nav-pills",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+        className: "nav-item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          className: "nav-link text-dark",
+          to: "/",
+          children: "Home"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+        className: "nav-item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          className: "nav-link text-dark",
+          to: "/profile",
+          children: "Profile"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+        className: "nav-item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          className: "nav-link text-dark",
+          to: "/messages",
+          children: "Messages"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+        className: "nav-item dropdown ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          className: "btn btn-secondary",
-          href: "/login",
-          children: "Log in"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-          children: " "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          className: "btn btn-primary",
-          href: "/register",
-          children: "Register"
+          className: "nav-link dropdown-toggle text-dark",
+          href: "#",
+          id: "navbarDropdownMenuLink",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          children: window.Laravel.user
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "dropdown-menu ml-auto",
+          "aria-labelledby": "navbarDropdown",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+            className: "dropdown-item",
+            to: "/logout",
+            children: "logout"
+          })
         })]
-      })
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "ml-auto",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        className: "btn btn-secondary",
+        href: "/login",
+        children: "Log in"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        children: " "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        className: "btn btn-primary",
+        href: "/register",
+        children: "Register"
+      })]
     })]
   });
 }

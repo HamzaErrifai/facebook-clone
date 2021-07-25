@@ -33,21 +33,26 @@ export class Main extends Component {
     };
 
     componentDidMount = () => {
-        axios.get("/api/isconnected").then((resp) => {
-            if (resp.data.status == 200) {
-                this.setState({
-                    isLoading: false,
-                });
-            }
-            this.setState(
-                {
-                    isConnected: resp.data.etat,
-                },
-                () => {
-                    this.context = this.state.isConnected;
+        if (window.Laravel.user == null) {
+            axios.get("/api/isconnected").then((resp) => {
+                if (resp.data.status == 200) {
+                    this.setState({
+                        isLoading: false,
+                    });
                 }
-            );
-        });
+                this.setState(
+                    {
+                        isConnected: resp.data.etat,
+                    },
+                    () => {
+                        this.context = this.state.isConnected;
+                    }
+                );
+            });
+        } else
+            this.setState({
+                isConnected: true,
+            });
     };
 
     render() {
