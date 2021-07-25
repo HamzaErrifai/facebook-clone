@@ -14,7 +14,7 @@ export class Post extends Component {
         if (this.state.liked) {
             //dislike
             axios
-                .delete("/dislikepost/" + this.props.data[0].id)
+                .delete("/api/dislikepost/" + this.props.data[0].id)
                 .then((response) => {
                     if (response.data.etat) this.setState({ liked: false });
                 })
@@ -28,7 +28,7 @@ export class Post extends Component {
                 user_id: this.props.data.user_id,
             };
             axios
-                .post("/likepost", joinedLike)
+                .post("/api/likepost", joinedLike)
                 .then((response) => {
                     if (response.data.etat) this.setState({ liked: true });
                 })

@@ -3,7 +3,7 @@ import React from "react";
 function BigLabel(props) {
     return (
         <h1 className="font-weight-bold d-flex justify-content-between">
-            <div className="p-2">{props.txt}</div>
+            <div className="p-2 m-auto">{props.txt}</div>
             {props.closeBtn && (
                 <button
                     type="button"

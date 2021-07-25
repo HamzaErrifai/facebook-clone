@@ -36,7 +36,7 @@ export class CreatePost extends Component {
 
     createPost = () => {
         axios
-            .post(window.Laravel.url + "/addpost", this.state.posts)
+            .post(window.Laravel.url + "/api/addpost", this.state.posts)
             .then((response) => {
                 if (response.data.etat) {
                     this.props.setPosts(response.data.post);

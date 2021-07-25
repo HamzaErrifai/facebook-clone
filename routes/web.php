@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReactController;
 use Illuminate\Support\Facades\Route;
@@ -26,16 +27,16 @@ Auth::routes();
 
 
 #Posts
-Route::get('/users', [PostController::class, 'getUsers']);
-Route::get('/myposts', [PostController::class, 'getPosts']);
-Route::get('/post/{id}', [PostController::class, 'getPost']);
+Route::get('/api/users', [PostController::class, 'getUsers']);
+Route::get('/api/myposts', [PostController::class, 'getPosts']);
+Route::get('/api/post/{id}', [PostController::class, 'getPost']);
 
-Route::put('/post/{id}', [PostController::class, 'update']);
-Route::post('/addpost', [PostController::class, 'store']);
-Route::delete('/post/{id}', [PostController::class, 'destroy']);
+Route::put('/api/post/{id}', [PostController::class, 'update']);
+Route::post('/api/addpost', [PostController::class, 'store']);
+Route::delete('/api/post/{id}', [PostController::class, 'destroy']);
 
-Route::post('/likepost', [PostController::class, 'likePost']);
-Route::delete('/dislikepost/{id}', [PostController::class, 'dislikePost']);
+Route::post('/api/likepost', [PostController::class, 'likePost']);
+Route::delete('/api/dislikepost/{id}', [PostController::class, 'dislikePost']);
 
 Route::get('/{path?}', function () {
     return view('welcome');
@@ -47,4 +48,11 @@ Route::get('/{path?}', function () {
 Route::get('/api/logout', function () {
     Auth::logout();
     return ['logged_off' => true];
+});
+
+
+Route::get('/api/isconnected', function () {
+    if (Auth::user())
+        return ['etat' => true];
+    return ['etat' => false];
 });

@@ -3,12 +3,14 @@ import axios from "axios";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
 import BigLabel from "../../utils/BigLabel";
+import NoPost from "../../utils/NoPost";
 
 export class PostShow extends Component {
     constructor(props) {
         super(props);
         this.state = {
             posts: [],
+            isLoading: true,
         };
     }
 
@@ -23,10 +25,16 @@ export class PostShow extends Component {
     }
 
     fetchData = async () => {
-        const api = await axios("/myposts");
+        const api = await axios("/api/myposts");
+        if (api.data.status == 200) {
+            this.setState({
+                isLoading: true,
+            });
+        }
         if (this.mounted)
             this.setState({
                 posts: api.data.reverse(),
+                isLoading: false,
             });
     };
 
@@ -45,11 +53,24 @@ export class PostShow extends Component {
                 <CreatePost setPosts={this.setPosts} />
 
                 <BigLabel txt="My Posts" />
-                {this.state.posts
-                    ? this.state.posts.map((elm) => (
-                          <Post key={elm.id} data={elm} />
-                      ))
-                    : "Loading"}
+                {this.state.posts && !this.state.isLoading ? (
+                    this.state.posts.length > 0 ? (
+                        this.state.posts.map((elm) => (
+                            <Post key={elm.id} data={elm} />
+                        ))
+                    ) : (
+                        <NoPost />
+                    )
+                ) : (
+                    <div className="d-flex justify-content-center">
+                        <div
+                            className="spinner-border text-primary"
+                            role="status"
+                        >
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
