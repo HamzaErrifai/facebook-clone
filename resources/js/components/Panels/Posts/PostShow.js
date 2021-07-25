@@ -4,6 +4,7 @@ import Post from "./Post";
 import CreatePost from "./CreatePost";
 import BigLabel from "../../utils/BigLabel";
 import NoPost from "../../utils/NoPost";
+import Loading from "../../utils/Loading";
 
 export class PostShow extends Component {
     constructor(props) {
@@ -62,14 +63,7 @@ export class PostShow extends Component {
                         <NoPost />
                     )
                 ) : (
-                    <div className="d-flex justify-content-center">
-                        <div
-                            className="spinner-border text-primary"
-                            role="status"
-                        >
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
+                    <Loading />
                 )}
             </div>
         );
