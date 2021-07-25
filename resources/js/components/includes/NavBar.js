@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-            <a className="navbar-brand" href="/home">
+            <Link className="navbar-brand" to="/">
                 <img src="/imgs/letter-f.svg" width="30" height="30" />
-            </a>
+            </Link>
             <button
                 className="navbar-toggler"
                 type="button"
@@ -18,22 +19,22 @@ function NavBar() {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                {window.Laravel.user ? (
+                {window.Laravel.user != null ? (
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/">
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/profile">
                                 Profile
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Notificatins
-                            </a>
+                            <Link className="nav-link" to="/messages">
+                                Messages
+                            </Link>
                         </li>
 
                         <li className="nav-item dropdown ">
@@ -51,9 +52,9 @@ function NavBar() {
                                 className="dropdown-menu ml-auto"
                                 aria-labelledby="navbarDropdown"
                             >
-                                <a className="dropdown-item" href="/logout">
+                                <Link className="dropdown-item" to="/logout">
                                     logout
-                                </a>
+                                </Link>
                             </div>
                         </li>
                     </ul>

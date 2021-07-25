@@ -7,7 +7,6 @@ import BigLabel from "../../utils/BigLabel";
 export class PostShow extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             posts: [],
         };
@@ -22,16 +21,23 @@ export class PostShow extends Component {
     shouldComponentUpdate() {
         return true;
     }
+
     fetchData = async () => {
         const api = await axios("/myposts");
-        this.setState({
-            posts: api.data.reverse(),
-        });
+        if (this.mounted)
+            this.setState({
+                posts: api.data.reverse(),
+            });
     };
 
     componentDidMount = () => {
+        this.mounted = true;
         this.fetchData();
     };
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
 
     render() {
         return (

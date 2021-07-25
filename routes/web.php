@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReactController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 #Posts
@@ -36,9 +37,14 @@ Route::delete('/post/{id}', [PostController::class, 'destroy']);
 Route::post('/likepost', [PostController::class, 'likePost']);
 Route::delete('/dislikepost/{id}', [PostController::class, 'dislikePost']);
 
+Route::get('/{path?}', function () {
+    return view('welcome');
+})->where('path', '^((?!api).)*$');
 
 
-Route::get('logout', function () {
+
+
+Route::get('/api/logout', function () {
     Auth::logout();
-    return redirect('/login');
+    return ['logged_off' => true];
 });
