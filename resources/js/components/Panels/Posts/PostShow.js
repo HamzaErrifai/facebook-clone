@@ -22,14 +22,9 @@ export class PostShow extends Component {
     };
 
     removePost = (id) => {
-        this.setState(
-            {
-                posts: this.state.posts.filter((elm) => elm.id !== id),
-            },
-            () => {
-                console.log(this.state.posts, id);
-            }
-        );
+        this.setState({
+            posts: this.state.posts.filter((elm) => elm.id !== id),
+        });
     };
 
     fetchData = async () => {
