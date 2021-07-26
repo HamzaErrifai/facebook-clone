@@ -106,9 +106,9 @@ class PostController extends Controller
         return $post->delete();
     }
 
-    
 
-    public function getPosts()
+
+    public function getMyPosts()
     {
         $posts_to_send = collect();
         $posts = Auth::user()->posts;
@@ -116,8 +116,10 @@ class PostController extends Controller
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
             $post_to_send = array_merge($user->toArray(), $post->toArray());
+
             if (!empty($like)) {
                 $post_to_send = array_merge($like->toArray(), $post_to_send);
+                $post_to_send = array_merge($post_to_send, ["like_count"=> $like->count()]);
             }
             $posts_to_send->push($post_to_send);
         }
@@ -142,7 +144,7 @@ class PostController extends Controller
         $like->user_id = $request->user_id;
 
         $like->save();
-        return Response()->json(['etat' => true]);
+        return Response()->json(['etat' => true, 'like_count']);
     }
 
     public function dislikePost($id)

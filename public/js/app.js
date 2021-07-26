@@ -2405,6 +2405,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Post = /*#__PURE__*/function (_Component) {
   _inherits(Post, _Component);
 
@@ -2422,7 +2423,8 @@ var Post = /*#__PURE__*/function (_Component) {
         //dislike
         axios["delete"]("/api/dislikepost/" + _this.props.data[0].id).then(function (response) {
           if (response.data.etat) _this.setState({
-            liked: false
+            liked: false,
+            likeCount: _this.state.likeCount - 1
           });
         })["catch"](function (error) {
           console.log(error);
@@ -2434,9 +2436,12 @@ var Post = /*#__PURE__*/function (_Component) {
           user_id: _this.props.data.user_id
         };
         axios.post("/api/likepost", joinedLike).then(function (response) {
-          if (response.data.etat) _this.setState({
-            liked: true
-          });
+          if (response.data.etat) {
+            _this.setState({
+              liked: true,
+              likeCount: _this.state.likeCount + 1
+            });
+          }
         })["catch"](function (error) {
           console.log(error);
         });
@@ -2445,7 +2450,8 @@ var Post = /*#__PURE__*/function (_Component) {
 
     _this.state = {
       liked: _this.props.data[0] != undefined,
-      post: {}
+      post: {},
+      likeCount: _this.props.data.like_count
     };
     return _this;
   }
@@ -2509,10 +2515,19 @@ var Post = /*#__PURE__*/function (_Component) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
               className: "btn btn-lightGray",
               onClick: this.handleLikeClick,
-              children: this.state.liked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                className: "fas fa-thumbs-up text-primary"
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                className: "far fa-thumbs-up"
+              children: this.state.liked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                  className: "fas fa-thumbs-up text-primary"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                  className: "text-primary",
+                  children: [this.state.likeCount, " likes"]
+                })]
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                  className: "far fa-thumbs-up"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                  children: [this.state.likeCount, " likes"]
+                })]
               })
             })
           })]

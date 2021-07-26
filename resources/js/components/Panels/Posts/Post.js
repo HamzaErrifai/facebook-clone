@@ -7,6 +7,7 @@ export class Post extends Component {
         this.state = {
             liked: this.props.data[0] != undefined,
             post: {},
+            likeCount: this.props.data.like_count,
         };
     }
 
@@ -16,13 +17,18 @@ export class Post extends Component {
             axios
                 .delete("/api/dislikepost/" + this.props.data[0].id)
                 .then((response) => {
-                    if (response.data.etat) this.setState({ liked: false });
+                    if (response.data.etat)
+                        this.setState({
+                            liked: false,
+                            likeCount: this.state.likeCount - 1,
+                        });
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         } else {
             //like
+
             const joinedLike = {
                 post_id: this.props.data.id,
                 user_id: this.props.data.user_id,
@@ -30,7 +36,12 @@ export class Post extends Component {
             axios
                 .post("/api/likepost", joinedLike)
                 .then((response) => {
-                    if (response.data.etat) this.setState({ liked: true });
+                    if (response.data.etat) {
+                        this.setState({
+                            liked: true,
+                            likeCount: this.state.likeCount + 1,
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -85,9 +96,17 @@ export class Post extends Component {
                             onClick={this.handleLikeClick}
                         >
                             {this.state.liked ? (
-                                <i className="fas fa-thumbs-up text-primary"></i>
+                                <>
+                                    <i className="fas fa-thumbs-up text-primary"></i>
+                                    <span className="text-primary">
+                                        {this.state.likeCount} likes
+                                    </span>
+                                </>
                             ) : (
-                                <i className="far fa-thumbs-up"></i>
+                                <>
+                                    <i className="far fa-thumbs-up"></i>
+                                    <span>{this.state.likeCount} likes</span>
+                                </>
                             )}
                         </button>
                     </div>

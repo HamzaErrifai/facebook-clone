@@ -31,7 +31,7 @@ Route::get('/api/users', [UserController::class, 'getUsers']);
 Route::get('/api/friends', [UserController::class, 'getFriends']);
 Route::get('/api/suggestions', [UserController::class, 'getSuggestions']);
 
-Route::get('/api/myposts', [PostController::class, 'getPosts']);
+Route::get('/api/myposts', [PostController::class, 'getMyPosts']);
 Route::get('/api/post/{id}', [PostController::class, 'getPost']);
 
 Route::put('/api/post/{id}', [PostController::class, 'update']);
