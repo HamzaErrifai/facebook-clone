@@ -3145,13 +3145,16 @@ var Profile = function Profile() {
       user = _useState2[0],
       setUser = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+  if (Number.isInteger(Number.parseInt(id))) (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user/" + id).then(function (resp) {
       setUser(resp.data);
     });
   }, []);
   if (user !== null && user !== void 0 && user.name) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
     children: ["Profile ", user.name]
+  });
+  if (!Number.isInteger(Number.parseInt(id))) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, {
+    to: "/"
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
 };
