@@ -21,12 +21,19 @@ export class PostShow extends Component {
         });
     };
 
-    shouldComponentUpdate() {
-        return true;
-    }
+    removePost = (id) => {
+        this.setState(
+            {
+                posts: this.state.posts.filter((elm) => elm.id !== id),
+            },
+            () => {
+                console.log(this.state.posts, id);
+            }
+        );
+    };
 
     fetchData = async () => {
-        const api = await axios("/api/"+this.props.what);
+        const api = await axios("/api/" + this.props.what);
         if (api.data.status == 200) {
             this.setState({
                 isLoading: true,
@@ -57,7 +64,11 @@ export class PostShow extends Component {
                 {this.state.posts && !this.state.isLoading ? (
                     this.state.posts.length > 0 ? (
                         this.state.posts.map((elm) => (
-                            <Post key={elm.id} data={elm} />
+                            <Post
+                                key={elm.id}
+                                data={elm}
+                                removePost={this.removePost}
+                            />
                         ))
                     ) : (
                         <NoWhat what="posts" />

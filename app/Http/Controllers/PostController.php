@@ -101,9 +101,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        return $post->delete();
+        $post = Post::find($id);
+        $this->authorize('delete', $post);
+        $post->delete();
+        return ["deleted" => true];
     }
 
 
@@ -119,8 +122,8 @@ class PostController extends Controller
 
             if (!empty($like)) {
                 $post_to_send = array_merge($like->toArray(), $post_to_send);
-                $post_to_send = array_merge($post_to_send, ["like_count"=> $like->count()]);
             }
+            $post_to_send = array_merge($post_to_send, ["like_count" => $like->count()]);
             $posts_to_send->push($post_to_send);
         }
         return $posts_to_send;
@@ -130,7 +133,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $user = User::find($post->user_id);
+        $like = Like::where('post_id', $post->id)->get();
         $post_to_send = array_merge($user->toArray(), $post->toArray());
+        $post_to_send = array_merge($post_to_send, ["like_count" => $like->count()]);
 
         $this->authorize('view', $post);
         return $post_to_send;

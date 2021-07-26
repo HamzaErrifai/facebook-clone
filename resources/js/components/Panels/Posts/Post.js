@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 
 export class Post extends Component {
@@ -48,6 +49,12 @@ export class Post extends Component {
         }
     };
 
+    deleteHandle = () => {
+        axios
+            .delete("/api/post/" + this.props.data.id)
+            .then((resp) => this.props.removePost(this.props.data.id));
+    };
+
     render() {
         const { data } = this.props;
 
@@ -75,10 +82,18 @@ export class Post extends Component {
                                 className="dropdown-menu shadow-sm"
                                 aria-labelledby="dropdownMenuLink"
                             >
-                                <a className="dropdown-item" href="#" disabled>
+                                <a
+                                    className="dropdown-item"
+                                    href="#"
+                                    onClick={this.editHandle}
+                                >
                                     <i className="far fa-edit"></i> Edit
                                 </a>
-                                <a className="dropdown-item" href="#" disabled>
+                                <a
+                                    className="dropdown-item"
+                                    href="#"
+                                    onClick={this.deleteHandle}
+                                >
                                     <i className="far fa-trash-alt"></i> Delete
                                 </a>
                             </div>
