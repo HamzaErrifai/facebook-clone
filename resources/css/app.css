@@ -46,7 +46,7 @@
     text-align: center;
 }
 .btn-n-sm:hover {
-    background-color: rgba(211, 211, 211, 0.390);
+    background-color: rgba(211, 211, 211, 0.39);
 }
 
 .btn-n-sm:focus {
@@ -68,13 +68,20 @@
     width: 100vw;
     height: 90vh;
 }
-.bg-lightGray{
+.bg-lightGray {
     background-color: rgba(211, 211, 211, 0.315);
 }
 
 .dropleft .dropdown-toggle::before {
     display: none;
 }
+
+.stick {
+    height: 100%;
+    width: 230px;
+    margin-top: -10px;
+}
+
 
 @media screen and (max-width: 895px) {
     .post-show-container {

@@ -16,7 +16,7 @@
         window.Laravel = {!! json_encode([
     'csrftoken' => csrf_token(),
     'url' => url('/'),
-    'user' => Auth::user()?->name,
+    'user' => Auth::user(),
     'posts' => [],
 ]) !!};
     </script>

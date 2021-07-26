@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ReactController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +25,12 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-#Posts
-Route::get('/api/users', [PostController::class, 'getUsers']);
+#users
+Route::get('/api/user/{id}', [UserController::class, 'getUser']);
+Route::get('/api/users', [UserController::class, 'getUsers']);
+Route::get('/api/friends', [UserController::class, 'getFriends']);
+Route::get('/api/suggestions', [UserController::class, 'getSuggestions']);
+
 Route::get('/api/myposts', [PostController::class, 'getPosts']);
 Route::get('/api/post/{id}', [PostController::class, 'getPost']);
 
@@ -41,7 +44,6 @@ Route::delete('/api/dislikepost/{id}', [PostController::class, 'dislikePost']);
 Route::get('/{path?}', function () {
     return view('welcome');
 })->where('path', '^((?!api).)*$');
-
 
 
 

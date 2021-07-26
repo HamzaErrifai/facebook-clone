@@ -106,11 +106,7 @@ class PostController extends Controller
         return $post->delete();
     }
 
-    public function getUsers()
-    {
-        $users = User::all();
-        return $users;
-    }
+    
 
     public function getPosts()
     {

@@ -35,7 +35,7 @@ function NavBar() {
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            {window.Laravel.user}
+                            {window.Laravel.user.name}
                         </a>
                         <div
                             className="dropdown-menu ml-auto"
