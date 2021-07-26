@@ -2709,7 +2709,7 @@ function LeftPannel() {
     className: "position-fixed overflow-auto stick",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
       href: "#",
-      className: "list-group-item list-group-item-action active",
+      className: "list-group-item list-group-item-action bg-primary text-white",
       children: "Suggestions"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SuggestionsList__WEBPACK_IMPORTED_MODULE_1__.default, {})]
   });
@@ -2734,8 +2734,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/Loading */ "./resources/js/components/utils/Loading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2759,6 +2760,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2803,22 +2805,20 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
         for (var i = 0; i < ((_this$state2 = this.state) === null || _this$state2 === void 0 ? void 0 : _this$state2.suggestions.length); i++) {
           var _this$state2;
 
-          showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+          showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/profile/".concat(this.state.suggestions[i].id),
-            className: "list-group-item",
+            className: "list-group-item text-dark",
             children: this.state.suggestions[i].name
           }, this.state.suggestions[i].id));
         }
 
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "list-group",
           children: showList
         });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: "Loading..."
-      });
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
     }
   }]);
 
@@ -3113,8 +3113,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/Loading */ "./resources/js/components/utils/Loading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3132,8 +3133,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Profile = function Profile() {
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
       _useParams$id = _useParams.id,
       id = _useParams$id === void 0 ? window.Laravel.user.id : _useParams$id;
 
@@ -3147,9 +3150,10 @@ var Profile = function Profile() {
       setUser(resp.data);
     });
   }, []);
-  if (user) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h2", {
+  if (user !== null && user !== void 0 && user.name) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
     children: ["Profile ", user.name]
   });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
@@ -7793,7 +7797,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100%;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n}\r\n\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100%;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n.nav-pills .nav-link.active, .nav-pills .show > .nav-link>a {\r\n    color: white;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

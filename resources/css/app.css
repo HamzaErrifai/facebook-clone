@@ -80,8 +80,11 @@
     height: 100%;
     width: 230px;
     margin-top: -10px;
+    font-size: 1.2em;
 }
-
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link>a {
+    color: white;
+}
 
 @media screen and (max-width: 895px) {
     .post-show-container {

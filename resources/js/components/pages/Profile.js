@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../utils/Loading";
 
 const Profile = () => {
     const { id = window.Laravel.user.id } = useParams();
@@ -10,7 +11,8 @@ const Profile = () => {
             setUser(resp.data);
         });
     }, []);
-    if (user) return <h2>Profile {user.name}</h2>;
+    if (user?.name) return <h2>Profile {user.name}</h2>;
+    return <Loading/>
 };
 
 export default Profile;

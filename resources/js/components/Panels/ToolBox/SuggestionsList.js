@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../../utils/Loading";
 
 export class SuggestionsList extends Component {
     constructor(props) {
@@ -30,14 +31,14 @@ export class SuggestionsList extends Component {
                     <Link
                         key={this.state.suggestions[i].id}
                         to={`/profile/${this.state.suggestions[i].id}`}
-                        className="list-group-item"
+                        className="list-group-item text-dark"
                     >
                         {this.state.suggestions[i].name}
                     </Link>
                 );
             return <div className="list-group">{showList}</div>;
         }
-        return <div>Loading...</div>;
+        return  <Loading/>;
     }
 }
 
