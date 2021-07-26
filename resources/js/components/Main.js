@@ -44,7 +44,6 @@ class Main extends Component {
                                     component={Profile}
                                 />
                                 <Route
-                                    exact
                                     path="/profile/:id"
                                     component={Profile}
                                 />

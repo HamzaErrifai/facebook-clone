@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../../utils/Loading";
+import NoWhat from "../../utils/NoWhat";
 
 export class SuggestionsList extends Component {
     constructor(props) {
@@ -21,7 +22,6 @@ export class SuggestionsList extends Component {
                 })
             )
             .catch((err) => console.log(err));
-            console.log("/api/" + this.props.what)
     };
 
     render() {
@@ -32,12 +32,20 @@ export class SuggestionsList extends Component {
                     <Link
                         key={this.state.suggestions[i].id}
                         to={`/profile/${this.state.suggestions[i].id}`}
-                        className="list-group-item text-dark"
+                        className="list-group-item text-dark text-decoration-none"
                     >
                         {this.state.suggestions[i].name} hh
                     </Link>
                 );
-            return <div className="list-group">{showList}</div>;
+            if (this.state.suggestions.length > 0)
+                return <div className="list-group">{showList}</div>;
+            return (
+                <div className="list-group">
+                    <a className="list-group-item text-decoration-none text-dark">
+                        <NoWhat what={this.props.what} />
+                    </a>
+                </div>
+            );
         }
         return <Loading />;
     }

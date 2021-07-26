@@ -2107,7 +2107,6 @@ var Main = /*#__PURE__*/function (_Component) {
                 path: "/profile/",
                 component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
                 path: "/profile/:id",
                 component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
@@ -2562,7 +2561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Post */ "./resources/js/components/Panels/Posts/Post.js");
 /* harmony import */ var _CreatePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CreatePost */ "./resources/js/components/Panels/Posts/CreatePost.js");
 /* harmony import */ var _utils_BigLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/BigLabel */ "./resources/js/components/utils/BigLabel.js");
-/* harmony import */ var _utils_NoPost__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/NoPost */ "./resources/js/components/utils/NoPost.js");
+/* harmony import */ var _utils_NoWhat__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/NoWhat */ "./resources/js/components/utils/NoWhat.js");
 /* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/Loading */ "./resources/js/components/utils/Loading.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2689,7 +2688,9 @@ var PostShow = /*#__PURE__*/function (_Component) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
             data: elm
           }, elm.id);
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_NoPost__WEBPACK_IMPORTED_MODULE_6__.default, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_7__.default, {})]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_NoWhat__WEBPACK_IMPORTED_MODULE_6__.default, {
+          what: "posts"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_7__.default, {})]
       });
     }
   }]);
@@ -2723,8 +2724,11 @@ function LeftPannel() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "position-fixed overflow-auto stick",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-      className: "list-group-item list-group-item-action bg-primary text-white",
-      children: "Suggestions"
+      className: "list-group-item list-group-item-action bg-light border-0",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        className: "",
+        children: "Suggestions"
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SuggestionsList__WEBPACK_IMPORTED_MODULE_1__.default, {
       what: "suggestions"
     })]
@@ -2785,9 +2789,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/Loading */ "./resources/js/components/utils/Loading.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils_NoWhat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/NoWhat */ "./resources/js/components/utils/NoWhat.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2818,6 +2823,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var SuggestionsList = /*#__PURE__*/function (_Component) {
   _inherits(SuggestionsList, _Component);
 
@@ -2838,7 +2844,6 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
       })["catch"](function (err) {
         return console.log(err);
       });
-      console.log("/api/" + _this.props.what);
     });
 
     _this.state = {
@@ -2858,20 +2863,29 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
         for (var i = 0; i < ((_this$state2 = this.state) === null || _this$state2 === void 0 ? void 0 : _this$state2.suggestions.length); i++) {
           var _this$state2;
 
-          showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
             to: "/profile/".concat(this.state.suggestions[i].id),
-            className: "list-group-item text-dark",
+            className: "list-group-item text-dark text-decoration-none",
             children: [this.state.suggestions[i].name, " hh"]
           }, this.state.suggestions[i].id));
         }
 
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        if (this.state.suggestions.length > 0) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "list-group",
           children: showList
         });
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "list-group",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+            className: "list-group-item text-decoration-none text-dark",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_utils_NoWhat__WEBPACK_IMPORTED_MODULE_3__.default, {
+              what: this.props.what
+            })
+          })
+        });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
     }
   }]);
 
@@ -3208,6 +3222,7 @@ var Profile = function Profile() {
     });
   }, []);
   if (user !== null && user !== void 0 && user.name) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
+    className: "container",
     children: ["Profile ", user.name]
   });
   if (!Number.isInteger(Number.parseInt(id))) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Redirect, {
@@ -3372,9 +3387,9 @@ function Loading() {
 
 /***/ }),
 
-/***/ "./resources/js/components/utils/NoPost.js":
+/***/ "./resources/js/components/utils/NoWhat.js":
 /*!*************************************************!*\
-  !*** ./resources/js/components/utils/NoPost.js ***!
+  !*** ./resources/js/components/utils/NoWhat.js ***!
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -3388,14 +3403,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function NoPost() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-    className: "text-center bg-white rounded shadow-sm",
-    children: "No posts Yet"
+function NoWhat(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+    className: "no-txt-inherit text-center bg-white rounded shadow-sm text-muted ",
+    children: ["No ", props.what, " to show"]
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NoPost);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NoWhat);
 
 /***/ }),
 
@@ -7857,7 +7872,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100%;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link > a {\r\n    color: white;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link > a {\r\n    color: #fff !important;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a:hover {\r\n    /* background-color: rgba(211, 211, 211, 0.315); */\r\n    border: 0;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
 import BigLabel from "../../utils/BigLabel";
-import NoPost from "../../utils/NoPost";
+import NoWhat from "../../utils/NoWhat";
 import Loading from "../../utils/Loading";
 
 export class PostShow extends Component {
@@ -60,7 +60,7 @@ export class PostShow extends Component {
                             <Post key={elm.id} data={elm} />
                         ))
                     ) : (
-                        <NoPost />
+                        <NoWhat what="posts" />
                     )
                 ) : (
                     <Loading />

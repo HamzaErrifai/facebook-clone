@@ -13,7 +13,7 @@ const Profile = () => {
             });
         }, []);
 
-    if (user?.name) return <h2>Profile {user.name}</h2>;
+    if (user?.name) return <h2 className="container">Profile {user.name}</h2>;
     if (!Number.isInteger(Number.parseInt(id))) return <Redirect to="/" />;
     return <Loading />;
 };
