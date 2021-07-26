@@ -8,7 +8,7 @@ function Home() {
         <>
             <LeftPannel />
             <RightPannel />
-            <PostShow what={"myposts"} />
+            <PostShow what={"posts"} />
         </>
     );
 }

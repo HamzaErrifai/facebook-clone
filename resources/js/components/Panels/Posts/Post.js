@@ -59,7 +59,7 @@ export class Post extends Component {
         const { data } = this.props;
 
         return (
-            <div className="card shadow-sm rounded mb-2" key={data.id}>
+            <div className="card shadow-sm rounded mb-2 mt-2" key={data.id}>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
                         <h6 className="mb-2 text-muted">

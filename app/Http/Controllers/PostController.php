@@ -111,10 +111,10 @@ class PostController extends Controller
 
 
 
-    public function getMyPosts()
+    private function getWhatPosts($what)
     {
         $posts_to_send = collect();
-        $posts = Auth::user()->posts;
+        $posts = $what;
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
@@ -127,6 +127,22 @@ class PostController extends Controller
             $posts_to_send->push($post_to_send);
         }
         return $posts_to_send;
+    }
+
+    public function getMyPosts()
+    {
+        return $this->getWhatPosts(Auth::user()->posts);
+    }
+
+    public function getPostsOf($id)
+    {
+        return $this->getWhatPosts(User::find($id));
+    }
+
+
+    public function getPosts()
+    {
+        return $this->getWhatPosts(Post::all());
     }
 
     public function getPost($id)

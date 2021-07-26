@@ -22,7 +22,7 @@ function ImgUpload() {
                     className="form-control border-0"
                 />
             </div>
-            <div class="image-area mt-4">
+            <div className="image-area mt-4">
                 <img
                     id="imageResult"
                     src="#"

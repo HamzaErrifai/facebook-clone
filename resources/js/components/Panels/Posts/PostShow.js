@@ -54,8 +54,8 @@ export class PostShow extends Component {
         return (
             <div className="container post-show-container dummy-push mt-2 mb-2">
                 <CreatePost setPosts={this.setPosts} />
-
-                <BigLabel txt="My Posts" />
+                
+                {/* <BigLabel txt="Posts" /> */}
                 {this.state.posts && !this.state.isLoading ? (
                     this.state.posts.length > 0 ? (
                         this.state.posts.map((elm) => (

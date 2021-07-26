@@ -34,7 +34,17 @@ export class SuggestionsList extends Component {
                         to={`/profile/${this.state.suggestions[i].id}`}
                         className="list-group-item text-dark text-decoration-none"
                     >
-                        {this.state.suggestions[i].name} hh
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <img
+                                    src={`storage/${this.state.suggestions[i].photo}`}
+                                    className="suggest-photo"
+                                />
+                            </div>
+                            <div class="p-2">
+                                {this.state.suggestions[i].name}
+                            </div>
+                        </div>
                     </Link>
                 );
             if (this.state.suggestions.length > 0)
