@@ -26,7 +26,7 @@ export class PostShow extends Component {
     }
 
     fetchData = async () => {
-        const api = await axios("/api/myposts");
+        const api = await axios("/api/"+this.props.what);
         if (api.data.status == 200) {
             this.setState({
                 isLoading: true,

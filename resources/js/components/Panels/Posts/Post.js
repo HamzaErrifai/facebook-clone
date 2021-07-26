@@ -28,7 +28,6 @@ export class Post extends Component {
                 });
         } else {
             //like
-
             const joinedLike = {
                 post_id: this.props.data.id,
                 user_id: this.props.data.user_id,

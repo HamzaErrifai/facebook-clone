@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Friend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,7 +83,19 @@ class UserController extends Controller
     {
         //
     }
-
+    
+    /**
+     * Adds a friend
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function AddFriend(Request $req)
+    {
+        /*add idFriend to the current user
+            and add id of current user to friend 
+        */
+        return Auth::user()->friends;
+    }
     public function getFriends()
     {
         return Auth::user()->friends;

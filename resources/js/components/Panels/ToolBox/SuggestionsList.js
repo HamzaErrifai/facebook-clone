@@ -14,13 +14,14 @@ export class SuggestionsList extends Component {
 
     componentDidMount = () => {
         axios
-            .get("/api/suggestions")
+            .get("/api/" + this.props.what)
             .then((resp) =>
                 this.setState({
                     suggestions: resp.data,
                 })
             )
             .catch((err) => console.log(err));
+            console.log("/api/" + this.props.what)
     };
 
     render() {
@@ -33,12 +34,12 @@ export class SuggestionsList extends Component {
                         to={`/profile/${this.state.suggestions[i].id}`}
                         className="list-group-item text-dark"
                     >
-                        {this.state.suggestions[i].name}
+                        {this.state.suggestions[i].name} hh
                     </Link>
                 );
             return <div className="list-group">{showList}</div>;
         }
-        return  <Loading/>;
+        return <Loading />;
     }
 }
 

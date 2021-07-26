@@ -5,12 +5,11 @@ function LeftPannel() {
     return (
         <div className="position-fixed overflow-auto stick">
             <a
-                href="#"
                 className="list-group-item list-group-item-action bg-primary text-white"
             >
                 Suggestions
             </a>
-            <SuggestionsList />
+            <SuggestionsList what="suggestions" />
         </div>
     );
 }

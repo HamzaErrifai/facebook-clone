@@ -82,8 +82,38 @@
     margin-top: -10px;
     font-size: 1.2em;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link>a {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link > a {
     color: white;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 250px;
+    width: 0;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper {
+    width: 230px;
+    margin-top: -10px;
+    font-size: 1.2em;
+}
+.list-group > a {
+    background-color: #f8f9fa;
+    border: 0;
+}
+
+.list-group > a {
+    background-color: #f8f9fa;
+    border: 0;
 }
 
 @media screen and (max-width: 895px) {
