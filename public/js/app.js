@@ -2459,7 +2459,8 @@ var Post = /*#__PURE__*/function (_Component) {
     _this.state = {
       liked: _this.props.data.liked,
       post: {},
-      likeCount: _this.props.data.like_count
+      likeCount: _this.props.data.like_count,
+      optionAvailable: _this.props.data.user_id == window.Laravel.user.id
     };
     return _this;
   }
@@ -2477,7 +2478,7 @@ var Post = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h6", {
               className: "mb-2 text-muted",
               children: [data.name, " ", data.id]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            }), this.state.optionAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "dropdown dropleft",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
                 className: "btn btn-n-sm dropdown-toggle",
@@ -2506,7 +2507,7 @@ var Post = /*#__PURE__*/function (_Component) {
                   onClick: this.deleteHandle,
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
                     className: "far fa-trash-alt"
-                  }), " Delete"]
+                  }), " ", "Delete"]
                 })]
               })]
             })]

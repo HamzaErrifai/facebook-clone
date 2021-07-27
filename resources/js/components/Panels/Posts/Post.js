@@ -9,6 +9,7 @@ export class Post extends Component {
             liked: this.props.data.liked,
             post: {},
             likeCount: this.props.data.like_count,
+            optionAvailable: this.props.data.user_id == window.Laravel.user.id,
         };
     }
 
@@ -65,39 +66,43 @@ export class Post extends Component {
                         <h6 className="mb-2 text-muted">
                             {data.name} {data.id}
                         </h6>
-                        <div className="dropdown dropleft">
-                            <a
-                                className="btn btn-n-sm dropdown-toggle"
-                                href="#"
-                                role="button"
-                                id="dropdownMenuLink"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            >
-                                <i className="fas fa-ellipsis-h"></i>
-                            </a>
 
-                            <div
-                                className="dropdown-menu shadow-sm"
-                                aria-labelledby="dropdownMenuLink"
-                            >
+                        {this.state.optionAvailable && (
+                            <div className="dropdown dropleft">
                                 <a
-                                    className="dropdown-item"
+                                    className="btn btn-n-sm dropdown-toggle"
                                     href="#"
-                                    onClick={this.editHandle}
+                                    role="button"
+                                    id="dropdownMenuLink"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
                                 >
-                                    <i className="far fa-edit"></i> Edit
+                                    <i className="fas fa-ellipsis-h"></i>
                                 </a>
-                                <a
-                                    className="dropdown-item"
-                                    href="#"
-                                    onClick={this.deleteHandle}
+
+                                <div
+                                    className="dropdown-menu shadow-sm"
+                                    aria-labelledby="dropdownMenuLink"
                                 >
-                                    <i className="far fa-trash-alt"></i> Delete
-                                </a>
+                                    <a
+                                        className="dropdown-item"
+                                        href="#"
+                                        onClick={this.editHandle}
+                                    >
+                                        <i className="far fa-edit"></i> Edit
+                                    </a>
+                                    <a
+                                        className="dropdown-item"
+                                        href="#"
+                                        onClick={this.deleteHandle}
+                                    >
+                                        <i className="far fa-trash-alt"></i>{" "}
+                                        Delete
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                     <h5 className="card-title">{data.title}</h5>
                     <p className="card-text">{data.content}</p>
