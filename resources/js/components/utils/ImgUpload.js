@@ -1,17 +1,19 @@
 import React from "react";
-const handleImageUpload = (e) => {
-    const input = e.target;
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $("#imageResult").attr("src", e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-};
 
 function ImgUpload() {
+    const handleImageUpload = (e) => {
+        const input = e.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#imageResult").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+
     return (
         <div className="d-flex justify-content-center">
             <input
@@ -21,7 +23,11 @@ function ImgUpload() {
                 onChange={handleImageUpload}
                 className="form-control border-0"
             />
-            <input type="submit" className="btn btn-info text-white" value="Modifier" />
+            <input
+                type="submit"
+                className="btn btn-info text-white"
+                value="Modifier"
+            />
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Swal from "sweetalert2";
 import BigLabel from "../../utils/BigLabel";
 
 export class CreatePost extends Component {
@@ -29,9 +30,25 @@ export class CreatePost extends Component {
     };
     handleCreateBtn = (e) => {
         e.preventDefault();
-        this.setState({ open: true }, () => {
-            this.contentRef.current.focus();
+
+        Swal.fire({
+            template: "#my-template",
         });
+        // Swal.fire({
+        //     title: "Create Post",
+        //     width: 600,
+        //     showCloseButton: true,
+        //     allowEscapeKey: false,
+        //     allowOutsideClick: false,
+        //     customClass: {
+        //         container: "popup-container",
+        //         popup: "shadow",
+        //     },
+        // });
+
+        // this.setState({ open: true }, () => {
+        //     this.contentRef.current.focus();
+        // });
     };
 
     createPost = () => {
@@ -63,41 +80,55 @@ export class CreatePost extends Component {
 
     render() {
         return this.state.open ? (
-            <div className="shadow-sm bg-white rounded">
-                <div className="border-bottom">
-                    <BigLabel
-                        txt="Create Post"
-                        closeBtn={true}
-                        handleClose={this.handleClose}
-                    />
-                </div>
-                <form className="p-3" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Title"
-                            onChange={this.handleTitleChange}
-                            value={this.state.title}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <textarea
-                            className="form-control"
-                            rows="3"
-                            placeholder="Content of the post"
-                            onChange={this.handleContentChange}
-                            value={this.state.content}
-                            ref={this.contentRef}
-                        ></textarea>
-                    </div>
-                    <button className="btn btn-primary btn-block">
-                        Create Post
-                    </button>
-                </form>
-            </div>
+            <template id="my-template">
+                <swal-title>
+                    Save changes to "Untitled 1" before closing?
+                </swal-title>
+                <swal-icon type="warning" color="red"></swal-icon>
+                <swal-button type="confirm">Save As</swal-button>
+                <swal-button type="cancel">Cancel</swal-button>
+                <swal-button type="deny">Close without Saving</swal-button>
+                <swal-param name="allowEscapeKey" value="false" />
+                <swal-param
+                    name="customClass"
+                    value='{ "popup": "my-popup" }'
+                />
+            </template>
         ) : (
+            // <div className="shadow-sm bg-white rounded">
+            //     <div className="border-bottom">
+            //         <BigLabel
+            //             txt="Create Post"
+            //             closeBtn={true}
+            //             handleClose={this.handleClose}
+            //         />
+            //     </div>
+            //     <form className="p-3" onSubmit={this.handleSubmit}>
+            //         <div className="form-group">
+            //             <input
+            //                 type="text"
+            //                 className="form-control"
+            //                 placeholder="Title"
+            //                 onChange={this.handleTitleChange}
+            //                 value={this.state.title}
+            //             />
+            //         </div>
+
+            //         <div className="form-group">
+            //             <textarea
+            //                 className="form-control"
+            //                 rows="3"
+            //                 placeholder="Content of the post"
+            //                 onChange={this.handleContentChange}
+            //                 value={this.state.content}
+            //                 ref={this.contentRef}
+            //             ></textarea>
+            //         </div>
+            //         <button className="btn btn-primary btn-block">
+            //             Create Post
+            //         </button>
+            //     </form>
+            // </div>
             <div className="shadow-sm bg-white rounded">
                 <div className="pl-4 pr-4 pt-2 pb-2">
                     <button

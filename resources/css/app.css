@@ -2,6 +2,13 @@
     max-width: 50%;
 }
 
+.popup-container {
+    background-color: rgba(255, 255, 255, 0.2)!important;
+    
+    background-image: url("/imgs/noisy-bg.png")!important;
+    background-repeat: repeat;
+}
+
 .dummy-push {
     margin-top: 70px !important;
 }
@@ -119,7 +126,6 @@
 }
 
 .list-group > a:hover {
-    /* background-color: rgba(211, 211, 211, 0.315); */
     border: 0;
 }
 
@@ -135,7 +141,7 @@
     border-radius: 50%;
 }
 
-.upload-input{
+.upload-input {
     width: 500px;
 }
 
