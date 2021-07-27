@@ -13,7 +13,6 @@
     margin-top: 70px !important;
 }
 .btn-lightGray {
-    /* background-color: rgba(211, 211, 211, 0.445); */
     color: gray;
 }
 .btn-lightGray:hover {
@@ -120,6 +119,10 @@
     background-color: #f8f9fa;
     border: 0;
 }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    color: black;
+    background-color: inherit;
+}
 
 .list-group > a:hover {
     border: 0;
@@ -135,6 +138,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
 .upload-input {
