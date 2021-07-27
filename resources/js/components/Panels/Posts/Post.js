@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export class Post extends Component {
     constructor(props) {
@@ -52,9 +53,22 @@ export class Post extends Component {
     };
 
     deleteHandle = () => {
-        axios
-            .delete("/api/post/" + this.props.data.id)
-            .then(() => this.props.removePost(this.props.data.id));
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                axios
+                    .delete("/api/post/" + this.props.data.id)
+                    .then(() => this.props.removePost(this.props.data.id));
+            }
+        });
     };
 
     render() {
@@ -64,8 +78,10 @@ export class Post extends Component {
             <div className="card shadow-sm rounded mb-2 mt-2" key={data.id}>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
-                        <Link className="mb-2 text-muted" to={`/profile/${data.user_id}`}>
-                            
+                        <Link
+                            className="mb-2 text-muted"
+                            to={`/profile/${data.user_id}`}
+                        >
                             <img
                                 src={`/storage/${data.photo}`}
                                 className="post-user-photo"

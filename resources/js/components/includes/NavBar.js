@@ -37,7 +37,7 @@ function NavBar() {
                         >
                             <img
                                 src={`/storage/${window.Laravel.user.photo}`}
-                                className="post-user-photo"
+                                className="user-sm-photo"
                             />
                             {window.Laravel.user.name}
                         </a>

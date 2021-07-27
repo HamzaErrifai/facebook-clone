@@ -17,41 +17,43 @@ const Profile = () => {
 
     const storePhoto = (e) => {
         e.preventDefault();
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Your profile picture will be shown to all the visitors of your account",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#f0ad4e",
-            cancelButtonColor: "#292b2c",
-            confirmButtonText: "Yes, change my photo",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    "Uploaded!",
-                    "Your Profile picture has been Updated.",
-                    "success"
-                );
-                let formData = new FormData();
-                const imagefile = document.querySelector("#upload");
-                formData.append("photo", imagefile.files[0]);
-                axios
-                    .post(
-                        `/api/user/${window.Laravel.user.id}/photo`,
-                        formData,
-                        {
-                            headers: {
-                                "Content-Type": "multipart/form-data",
-                            },
-                        }
-                    )
-                    .then((resp) => {
-                        if (resp) {
-                            setShowUpload(!showUpload);
-                        }
-                    });
-            }
-        });
+        const imagefile = document.querySelector("#upload");
+        if (imagefile.files.length > 0)
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Your profile picture will be shown to all the visitors of your account",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#f0ad4e",
+                cancelButtonColor: "#292b2c",
+                confirmButtonText: "Yes, change my photo",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        "Uploaded!",
+                        "Your Profile picture has been Updated.",
+                        "success"
+                    );
+                    let formData = new FormData();
+
+                    formData.append("photo", imagefile.files[0]);
+                    axios
+                        .post(
+                            `/api/user/${window.Laravel.user.id}/photo`,
+                            formData,
+                            {
+                                headers: {
+                                    "Content-Type": "multipart/form-data",
+                                },
+                            }
+                        )
+                        .then((resp) => {
+                            if (resp) {
+                                setShowUpload(!showUpload);
+                            }
+                        });
+                }
+            });
     };
 
     if (Number.isInteger(Number.parseInt(id)))
