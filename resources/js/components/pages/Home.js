@@ -8,7 +8,7 @@ function Home() {
         <>
             <LeftPannel />
             <RightPannel />
-            <PostShow what={"posts"} />
+            <PostShow what={"posts"} isCreateAvailable={true} />
         </>
     );
 }

@@ -53,8 +53,9 @@ export class PostShow extends Component {
     render() {
         return (
             <div className="container post-show-container dummy-push mt-2 mb-2">
-                <CreatePost setPosts={this.setPosts} />
-                
+                {this.props.isCreateAvailable && (
+                    <CreatePost setPosts={this.setPosts} />
+                )}
                 {this.state.posts && !this.state.isLoading ? (
                     this.state.posts.length > 0 ? (
                         this.state.posts.map((elm) => (

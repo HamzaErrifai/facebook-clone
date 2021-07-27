@@ -27,7 +27,11 @@ const Profile = () => {
             confirmButtonText: "Yes, change my photo",
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire("Uploaded!", "Your Profile picture has been Updated.", "success");
+                Swal.fire(
+                    "Uploaded!",
+                    "Your Profile picture has been Updated.",
+                    "success"
+                );
                 let formData = new FormData();
                 const imagefile = document.querySelector("#upload");
                 formData.append("photo", imagefile.files[0]);
@@ -80,7 +84,10 @@ const Profile = () => {
                         <ImgUpload />
                     </form>
                 )}{" "}
-                <PostShow what={`postsof/${user.id}`} />
+                <PostShow
+                    what={`postsof/${user.id}`}
+                    isCreateAvailable={id == window.Laravel.user.id}
+                />
             </div>
         );
     if (!Number.isInteger(Number.parseInt(id))) return <Redirect to="/" />;

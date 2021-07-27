@@ -2666,7 +2666,7 @@ var PostShow = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "container post-show-container dummy-push mt-2 mb-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [this.props.isCreateAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
           setPosts: this.setPosts
         }), this.state.posts && !this.state.isLoading ? this.state.posts.length > 0 ? this.state.posts.map(function (elm) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -3016,7 +3016,8 @@ __webpack_require__.r(__webpack_exports__);
 function Home() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Panels_ToolBox_LeftPannel__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Panels_ToolBox_RightPannel__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_1__.default, {
-      what: "posts"
+      what: "posts",
+      isCreateAvailable: true
     })]
   });
 }
@@ -3287,7 +3288,8 @@ var Profile = function Profile() {
       onSubmit: storePhoto,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_ImgUpload__WEBPACK_IMPORTED_MODULE_4__.default, {})
     }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
-      what: "postsof/".concat(user.id)
+      what: "postsof/".concat(user.id),
+      isCreateAvailable: id == window.Laravel.user.id
     })]
   });
   if (!Number.isInteger(Number.parseInt(id))) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
