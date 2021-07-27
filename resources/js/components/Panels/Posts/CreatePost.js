@@ -12,8 +12,7 @@ export class CreatePost extends Component {
         };
     }
     handleTitleChange = (e) => {
-        // console.log(this.state.posts)
-        this.setState((prevState) => ({
+            this.setState((prevState) => ({
             posts: { ...prevState.posts, title: e.target.value },
         }));
     };
