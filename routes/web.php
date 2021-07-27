@@ -27,6 +27,7 @@ Auth::routes();
 
 #users
 Route::get('/api/user/{id}', [UserController::class, 'getUser']);
+Route::post('/api/user/{id}/photo', [UserController::class, 'setPorfilePhoto']);
 Route::get('/api/users', [UserController::class, 'getUsers']);
 Route::get('/api/friends', [UserController::class, 'getFriends']);
 Route::get('/api/suggestions', [UserController::class, 'getSuggestions']);

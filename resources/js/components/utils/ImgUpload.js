@@ -13,23 +13,15 @@ const handleImageUpload = (e) => {
 
 function ImgUpload() {
     return (
-        <div>
-            <div>
-                <input
-                    id="upload"
-                    type="file"
-                    onChange={handleImageUpload}
-                    className="form-control border-0"
-                />
-            </div>
-            <div className="image-area mt-4">
-                <img
-                    id="imageResult"
-                    src="#"
-                    alt=""
-                    className="img-fluid rounded shadow-sm mx-auto d-block"
-                />
-            </div>
+        <div className="d-flex justify-content-center">
+            <input
+                id="upload"
+                name="photo"
+                type="file"
+                onChange={handleImageUpload}
+                className="form-control border-0"
+            />
+            <input type="submit" className="btn btn-info text-white" value="Modifier" />
         </div>
     );
 }

@@ -2451,7 +2451,7 @@ var Post = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteHandle", function () {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/post/" + _this.props.data.id).then(function (resp) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/post/" + _this.props.data.id).then(function () {
         return _this.props.removePost(_this.props.data.id);
       });
     });
@@ -2477,7 +2477,10 @@ var Post = /*#__PURE__*/function (_Component) {
             className: "d-flex justify-content-between",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h6", {
               className: "mb-2 text-muted",
-              children: [data.name, " ", data.id]
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                src: "/storage/".concat(data.photo),
+                className: "post-user-photo"
+              }), " ", " ", data.name, " ", data.id]
             }), this.state.optionAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "dropdown dropleft",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
@@ -3236,6 +3239,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var storePhoto = function storePhoto(e) {
+  e.preventDefault();
+  var formData = new FormData();
+  var imagefile = document.querySelector("#upload");
+  formData.append("photo", imagefile.files[0]);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/user/".concat(window.Laravel.user.id, "/photo"), formData, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  });
+};
+
 var Profile = function Profile() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(),
       _useParams$id = _useParams.id,
@@ -3245,6 +3260,15 @@ var Profile = function Profile() {
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
       setUser = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showUpload = _useState4[0],
+      setShowUpload = _useState4[1];
+
+  var handleShowUpload = function handleShowUpload() {
+    setShowUpload(!showUpload);
+  };
 
   if (Number.isInteger(Number.parseInt(id))) (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user/" + id).then(function (resp) {
@@ -3256,13 +3280,22 @@ var Profile = function Profile() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+        id: "imageResult",
         src: "/storage/".concat(user.photo),
-        className: "profile-img"
+        className: "profile-img",
+        onClick: handleShowUpload
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
       className: "text-center",
       children: user.name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_2__.default, {
+    }), id == window.Laravel.user.id && showUpload && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("form", {
+      id: "uploadForm",
+      role: "form",
+      method: "post",
+      encType: "multipart/form-data",
+      onSubmit: storePhoto,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_utils_ImgUpload__WEBPACK_IMPORTED_MODULE_3__.default, {})
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_2__.default, {
       what: "postsof/".concat(user.id)
     })]
   });
@@ -3427,21 +3460,17 @@ var handleImageUpload = function handleImageUpload(e) {
 
 function ImgUpload() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        id: "upload",
-        type: "file",
-        onChange: handleImageUpload,
-        className: "form-control border-0"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "image-area mt-4",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-        id: "imageResult",
-        src: "#",
-        alt: "",
-        className: "img-fluid rounded shadow-sm mx-auto d-block"
-      })
+    className: "d-flex justify-content-center",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      id: "upload",
+      name: "photo",
+      type: "file",
+      onChange: handleImageUpload,
+      className: "form-control border-0"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "submit",
+      className: "btn btn-info text-white",
+      value: "Modifier"
     })]
   });
 }
@@ -7969,7 +7998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link > a {\r\n    color: #fff !important;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a:hover {\r\n    /* background-color: rgba(211, 211, 211, 0.315); */\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo{\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.profile-img{\r\n    width: 150px;\r\n    height: 150px;\r\n    border-radius: 50%;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link > a {\r\n    color: #fff !important;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a:hover {\r\n    /* background-color: rgba(211, 211, 211, 0.315); */\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.upload-input{\r\n    width: 500px;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

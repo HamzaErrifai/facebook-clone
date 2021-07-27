@@ -53,7 +53,7 @@ export class Post extends Component {
     deleteHandle = () => {
         axios
             .delete("/api/post/" + this.props.data.id)
-            .then((resp) => this.props.removePost(this.props.data.id));
+            .then(() => this.props.removePost(this.props.data.id));
     };
 
     render() {
@@ -64,6 +64,10 @@ export class Post extends Component {
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
                         <h6 className="mb-2 text-muted">
+                            <img
+                                src={`/storage/${data.photo}`}
+                                className="post-user-photo"
+                            /> {" "}
                             {data.name} {data.id}
                         </h6>
 

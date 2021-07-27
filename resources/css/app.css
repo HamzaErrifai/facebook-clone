@@ -123,16 +123,27 @@
     border: 0;
 }
 
-.suggest-photo{
+.suggest-photo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-.profile-img{
+.post-user-photo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.upload-input{
+    width: 500px;
+}
+
+.profile-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 895px) {

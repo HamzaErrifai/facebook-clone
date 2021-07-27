@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,7 +84,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Adds a friend
      * @param \Illuminate\Http\Request
@@ -99,6 +100,17 @@ class UserController extends Controller
     public function getFriends()
     {
         return Auth::user()->friends;
+    }
+
+    public function setPorfilePhoto(Request $req)
+    {
+        if ($req->hasFile('photo')) {
+            $user = User::find(Auth::user()->id);
+            $user->photo = $req->file('photo')->store('user_photo');
+            $user->save();
+            return Response()->json(['etat' => true]);
+        }
+        return Response()->json(['etat' => false]);
     }
 
     public function getSuggestions()
