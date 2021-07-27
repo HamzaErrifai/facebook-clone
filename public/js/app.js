@@ -2037,27 +2037,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Welcome__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Welcome */ "./resources/js/components/pages/Welcome.js");
 /* harmony import */ var _pages_Profile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Profile */ "./resources/js/components/pages/Profile.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
@@ -2072,83 +2051,59 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-var Main = /*#__PURE__*/function (_Component) {
-  _inherits(Main, _Component);
-
-  var _super = _createSuper(Main);
-
-  function Main(props) {
-    var _this;
-
-    _classCallCheck(this, Main);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      isConnected: window.Laravel.user != null
-    };
-    return _this;
-  }
-
-  _createClass(Main, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_includes_NavBar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "content dummy-push",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-              exact: true,
-              path: ["/", "/home"],
-              children: window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_4__.default, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Welcome__WEBPACK_IMPORTED_MODULE_7__.default, {})
-            }), window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
-                path: "/profile/",
-                component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                path: "/profile/:id",
-                component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
-                path: "/messages",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
-                  className: "",
-                  children: "Messages"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
-                path: "/login",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
-                  className: "",
-                  children: "Login"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Login__WEBPACK_IMPORTED_MODULE_5__.default, {})]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
-                path: "/register",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
-                  className: "",
-                  children: "Register"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-                exact: true,
-                path: "/logout",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Logout__WEBPACK_IMPORTED_MODULE_6__.default, {})
-              })]
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Redirect, {
-              to: {
-                pathname: "/",
-                state: "Please sign in"
-              }
-            })]
-          })
+var Main = function Main() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_includes_NavBar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+      className: "content dummy-push",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+          exact: true,
+          path: ["/", "/home"],
+          children: window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_4__.default, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Welcome__WEBPACK_IMPORTED_MODULE_7__.default, {})
+        }), window.Laravel.user != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            exact: true,
+            path: "/profile/",
+            component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/profile/:id",
+            component: _pages_Profile__WEBPACK_IMPORTED_MODULE_8__.default
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            exact: true,
+            path: "/messages",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
+              className: "",
+              children: "Messages"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            exact: true,
+            path: "/login",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
+              className: "",
+              children: "Login"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Login__WEBPACK_IMPORTED_MODULE_5__.default, {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            exact: true,
+            path: "/register",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
+              className: "",
+              children: "Register"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            exact: true,
+            path: "/logout",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Logout__WEBPACK_IMPORTED_MODULE_6__.default, {})
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Redirect, {
+          to: {
+            pathname: "/",
+            state: "Please sign in"
+          }
         })]
-      });
-    }
-  }]);
-
-  return Main;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+      })
+    })]
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);
 
@@ -2250,19 +2205,16 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleCreateBtn", function (e) {
       e.preventDefault();
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
-        template: "#my-template"
-      }); // Swal.fire({
-      //     title: "Create Post",
-      //     width: 600,
-      //     showCloseButton: true,
-      //     allowEscapeKey: false,
-      //     allowOutsideClick: false,
-      //     customClass: {
-      //         container: "popup-container",
-      //         popup: "shadow",
-      //     },
-      // });
-      // this.setState({ open: true }, () => {
+        title: "Create Post",
+        width: 600,
+        showCloseButton: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        customClass: {
+          container: "popup-container",
+          popup: "shadow"
+        }
+      }); // this.setState({ open: true }, () => {
       //     this.contentRef.current.focus();
       // });
     });
@@ -2307,65 +2259,43 @@ var CreatePost = /*#__PURE__*/function (_Component) {
   _createClass(CreatePost, [{
     key: "render",
     value: function render() {
-      return this.state.open ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("template", {
-        id: "my-template",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-title", {
-          children: "Save changes to \"Untitled 1\" before closing?"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-icon", {
-          type: "warning",
-          color: "red"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-button", {
-          type: "confirm",
-          children: "Save As"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-button", {
-          type: "cancel",
-          children: "Cancel"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-button", {
-          type: "deny",
-          children: "Close without Saving"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-param", {
-          name: "allowEscapeKey",
-          value: "false"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("swal-param", {
-          name: "customClass",
-          value: "{ \"popup\": \"my-popup\" }"
+      return this.state.open ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "shadow-sm bg-white rounded",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "border-bottom",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_BigLabel__WEBPACK_IMPORTED_MODULE_2__.default, {
+            txt: "Create Post",
+            closeBtn: true,
+            handleClose: this.handleClose
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          className: "p-3",
+          onSubmit: this.handleSubmit,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "form-group",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "form-control",
+              placeholder: "Title",
+              onChange: this.handleTitleChange,
+              value: this.state.title
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "form-group",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+              className: "form-control",
+              rows: "3",
+              placeholder: "Content of the post",
+              onChange: this.handleContentChange,
+              value: this.state.content,
+              ref: this.contentRef
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            className: "btn btn-primary btn-block",
+            children: "Create Post"
+          })]
         })]
-      }) :
-      /*#__PURE__*/
-      // <div className="shadow-sm bg-white rounded">
-      //     <div className="border-bottom">
-      //         <BigLabel
-      //             txt="Create Post"
-      //             closeBtn={true}
-      //             handleClose={this.handleClose}
-      //         />
-      //     </div>
-      //     <form className="p-3" onSubmit={this.handleSubmit}>
-      //         <div className="form-group">
-      //             <input
-      //                 type="text"
-      //                 className="form-control"
-      //                 placeholder="Title"
-      //                 onChange={this.handleTitleChange}
-      //                 value={this.state.title}
-      //             />
-      //         </div>
-      //         <div className="form-group">
-      //             <textarea
-      //                 className="form-control"
-      //                 rows="3"
-      //                 placeholder="Content of the post"
-      //                 onChange={this.handleContentChange}
-      //                 value={this.state.content}
-      //                 ref={this.contentRef}
-      //             ></textarea>
-      //         </div>
-      //         <button className="btn btn-primary btn-block">
-      //             Create Post
-      //         </button>
-      //     </form>
-      // </div>
-      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "shadow-sm bg-white rounded",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "pl-4 pr-4 pt-2 pb-2",
@@ -3013,15 +2943,18 @@ function NavBar() {
           children: "Messages"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-        className: "nav-item dropdown ",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          className: "nav-link dropdown-toggle text-dark",
+        className: "nav-item dropdown",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+          className: "nav-link dropdown-toggle",
           href: "#",
           id: "navbarDropdownMenuLink",
           "data-toggle": "dropdown",
           "aria-haspopup": "true",
           "aria-expanded": "false",
-          children: window.Laravel.user.name
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            src: "/storage/".concat(window.Laravel.user.photo),
+            className: "post-user-photo"
+          }), window.Laravel.user.name]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "dropdown-menu ml-auto",
           "aria-labelledby": "navbarDropdown",
@@ -8053,7 +7986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2)!important;\r\n    \r\n    background-image: url(\"/imgs/noisy-bg.png\")!important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link > a {\r\n    color: #fff !important;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2)!important;\r\n    \r\n    background-image: url(\"/imgs/noisy-bg.png\")!important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    /* background-color: rgba(211, 211, 211, 0.445); */\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

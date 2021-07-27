@@ -106,7 +106,7 @@ class UserController extends Controller
     {
         if ($req->hasFile('photo')) {
             $user = User::find(Auth::user()->id);
-            $user->photo = $req->file('photo')->store('user_photo');
+            $user->photo = $req->file('photo')->store('user_photo/' . Auth::user()->id);
             $user->save();
             return Response()->json(['etat' => true]);
         }

@@ -26,15 +26,19 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    <li className="nav-item dropdown ">
+                    <li className="nav-item dropdown">
                         <a
-                            className="nav-link dropdown-toggle text-dark"
+                            className="nav-link dropdown-toggle"
                             href="#"
                             id="navbarDropdownMenuLink"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
+                            <img
+                                src={`/storage/${window.Laravel.user.photo}`}
+                                className="post-user-photo"
+                            />
                             {window.Laravel.user.name}
                         </a>
                         <div

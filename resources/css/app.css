@@ -90,10 +90,6 @@
     font-size: 1.2em;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link > a {
-    color: #fff !important;
-}
 
 .no-txt-inherit {
     font-size: revert;
