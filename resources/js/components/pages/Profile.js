@@ -27,7 +27,7 @@ const Profile = () => {
                     <h2 className="text-center">{user.name}</h2>
                 
                 {/* <ImgUpload /> */}
-                <PostShow what={"myposts"} />
+                <PostShow what={`postsof/${user.id}`} />
             </div>
         );
     if (!Number.isInteger(Number.parseInt(id))) return <Redirect to="/" />;

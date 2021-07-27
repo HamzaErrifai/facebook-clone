@@ -109,8 +109,6 @@ class PostController extends Controller
         return ["deleted" => true];
     }
 
-
-
     private function getWhatPosts($what)
     {
         $posts_to_send = collect();
@@ -118,12 +116,17 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
+            $likeCount = $like->count();
             $post_to_send = array_merge($user->toArray(), $post->toArray());
-
-            if (!empty($like)) {
-                $post_to_send = array_merge($like->toArray(), $post_to_send);
-            }
-            $post_to_send = array_merge($post_to_send, ["like_count" => $like->count()]);
+            $isLikedByCurrentUser = (Like::select('id')
+                ->where([
+                    ['user_id', '=', Auth::user()->id], ['post_id', "=", $post->id]
+                ])->get());
+            $post_to_send = array_merge($post_to_send, ["like_count" => $likeCount]);
+            $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) == 1]);
+            if ($isLikedByCurrentUser->count() > 0)
+                $post_to_send = array_merge($post_to_send, ["like_id" => $isLikedByCurrentUser[0]->id]);
+            $post_to_send = array_merge($post_to_send, ["likes" => $like]);
             $posts_to_send->push($post_to_send);
         }
         return $posts_to_send;
@@ -136,13 +139,16 @@ class PostController extends Controller
 
     public function getPostsOf($id)
     {
-        return $this->getWhatPosts(User::find($id));
+        $user = User::find($id);
+        $posts = Post::where('user_id', $user->id)->get();
+        return $this->getWhatPosts($posts);
     }
 
 
     public function getPosts()
     {
-        return $this->getWhatPosts(Post::all());
+        $posts = Post::all();
+        return $this->getWhatPosts($posts);
     }
 
     public function getPost($id)
@@ -162,7 +168,7 @@ class PostController extends Controller
         $like = new Like();
 
         $like->post_id = $request->post_id;
-        $like->user_id = $request->user_id;
+        $like->user_id = Auth::user()->id;
 
         $like->save();
         return Response()->json(['etat' => true, 'like_count']);

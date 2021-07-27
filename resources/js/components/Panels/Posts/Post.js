@@ -6,7 +6,7 @@ export class Post extends Component {
         super(props);
 
         this.state = {
-            liked: this.props.data[0] != undefined,
+            liked: this.props.data.liked,
             post: {},
             likeCount: this.props.data.like_count,
         };
@@ -16,7 +16,7 @@ export class Post extends Component {
         if (this.state.liked) {
             //dislike
             axios
-                .delete("/api/dislikepost/" + this.props.data[0].id)
+                .delete("/api/dislikepost/" + this.props.data.like_id)
                 .then((response) => {
                     if (response.data.etat)
                         this.setState({

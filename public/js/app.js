@@ -2423,7 +2423,7 @@ var Post = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleLikeClick", function () {
       if (_this.state.liked) {
         //dislike
-        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/dislikepost/" + _this.props.data[0].id).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/dislikepost/" + _this.props.data.like_id).then(function (response) {
           if (response.data.etat) _this.setState({
             liked: false,
             likeCount: _this.state.likeCount - 1
@@ -2457,7 +2457,7 @@ var Post = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      liked: _this.props.data[0] != undefined,
+      liked: _this.props.data.liked,
       post: {},
       likeCount: _this.props.data.like_count
     };
@@ -2880,15 +2880,15 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
             to: "/profile/".concat(this.state.suggestions[i].id),
             className: "list-group-item text-dark text-decoration-none",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              "class": "d-flex flex-row",
+              className: "d-flex flex-row",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                "class": "p-2",
+                className: "p-2",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                   src: "storage/".concat(this.state.suggestions[i].photo),
                   className: "suggest-photo"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                "class": "p-2",
+                className: "p-2",
                 children: this.state.suggestions[i].name
               })]
             })
@@ -3262,7 +3262,7 @@ var Profile = function Profile() {
       className: "text-center",
       children: user.name
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_2__.default, {
-      what: "myposts"
+      what: "postsof/".concat(user.id)
     })]
   });
   if (!Number.isInteger(Number.parseInt(id))) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Redirect, {
