@@ -2184,6 +2184,8 @@ var CreatePost = /*#__PURE__*/function (_Component) {
           content: e.target.value
         };
       });
+
+      e.target.value.length > 0 ? $("#createBtn").attr("disabled", false) : $("#createBtn").attr("disabled", true);
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
@@ -2293,6 +2295,8 @@ var CreatePost = /*#__PURE__*/function (_Component) {
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                     className: "btn btn-primary btn-block",
+                    id: "createBtn",
+                    disabled: true,
                     children: "Create Post"
                   })]
                 })

@@ -11,6 +11,7 @@ export class CreatePost extends Component {
             name: window.Laravel.user,
         };
     }
+
     handleTitleChange = (e) => {
         this.setState((prevState) => ({
             title: e.target.value,
@@ -21,6 +22,9 @@ export class CreatePost extends Component {
         this.setState((prevState) => ({
             content: e.target.value,
         }));
+        e.target.value.length > 0
+            ? $("#createBtn").attr("disabled", false)
+            : $("#createBtn").attr("disabled", true);
     };
 
     handleSubmit = (e) => {
@@ -121,7 +125,11 @@ export class CreatePost extends Component {
                                             ref={this.contentRef}
                                         ></textarea>
                                     </div>
-                                    <button className="btn btn-primary btn-block">
+                                    <button
+                                        className="btn btn-primary btn-block"
+                                        id="createBtn"
+                                        disabled
+                                    >
                                         Create Post
                                     </button>
                                 </form>
