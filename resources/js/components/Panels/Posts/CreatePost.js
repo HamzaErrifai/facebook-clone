@@ -1,30 +1,31 @@
 import React, { Component } from "react";
 import Swal from "sweetalert2";
-import BigLabel from "../../utils/BigLabel";
 
 export class CreatePost extends Component {
     constructor(props) {
         super(props);
         this.contentRef = React.createRef();
         this.state = {
-            posts: { title: "", content: "", name: window.Laravel.user },
+            title: "",
+            content: "",
+            name: window.Laravel.user,
         };
     }
     handleTitleChange = (e) => {
         this.setState((prevState) => ({
-            posts: { ...prevState.posts, title: e.target.value },
+            title: e.target.value,
         }));
     };
 
     handleContentChange = (e) => {
         this.setState((prevState) => ({
-            posts: { ...prevState.posts, content: e.target.value },
+            content: e.target.value,
         }));
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        $("#exampleModalCenter").modal('hide');
+        $("#exampleModalCenter").modal("hide");
         this.createPost();
         const Toast = Swal.mixin({
             toast: true,
@@ -47,16 +48,14 @@ export class CreatePost extends Component {
 
     createPost = () => {
         axios
-            .post(window.Laravel.url + "/api/addpost", this.state.posts)
+            .post(window.Laravel.url + "/api/addpost", this.state)
             .then((response) => {
                 if (response.data.etat) {
                     this.props.setPosts(response.data.post);
                     this.setState({
-                        posts: {
-                            title: "",
-                            content: "",
-                            name: window.Laravel.user,
-                        },
+                        title: "",
+                        content: "",
+                        name: window.Laravel.user,
                     });
                 }
             })
