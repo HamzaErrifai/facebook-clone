@@ -123,7 +123,7 @@ class PostController extends Controller
                     ['user_id', '=', Auth::user()->id], ['post_id', "=", $post->id]
                 ])->get());
             $post_to_send = array_merge($post_to_send, ["like_count" => $likeCount]);
-            $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) == 1]);
+            $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) > 0]);
             if ($isLikedByCurrentUser->count() > 0)
                 $post_to_send = array_merge($post_to_send, ["like_id" => $isLikedByCurrentUser[0]->id]);
             $post_to_send = array_merge($post_to_send, ["likes" => $like]);

@@ -2859,7 +2859,9 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleAddFriend", function (e) {
-      e.preventDefault(); //do the request
+      e.preventDefault(); //do the request to add friend
+
+      /**send id friend */
     });
 
     _this.state = {

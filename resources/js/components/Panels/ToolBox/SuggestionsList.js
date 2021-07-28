@@ -34,7 +34,8 @@ export class SuggestionsList extends Component {
     handleAddFriend = (e) => {
         e.preventDefault();
 
-        //do the request
+        //do the request to add friend
+        /**send id friend */
     };
 
     render() {
