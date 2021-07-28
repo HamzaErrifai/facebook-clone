@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\User;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class UserController extends Controller
 {
@@ -85,23 +87,6 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Adds a friend
-     * @param \Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
-     */
-    public function AddFriend(Request $req)
-    {
-        /*add idFriend to the current user
-            and add id of current user to friend 
-        */
-        return Auth::user()->friends;
-    }
-    public function getFriends()
-    {
-        return Auth::user()->friends;
-    }
-
     public function setPorfilePhoto(Request $req)
     {
         if ($req->hasFile('photo')) {
@@ -129,4 +114,32 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
+
+    public function addFriend($idFriend)
+    {
+        //Add the friend to the current user 
+        $friendship1 = new Friend();
+        $friendship1->user_id = Auth::user()->id;
+        $friendship1->friend_id = $idFriend;
+        $friendship1->save();
+
+        //Add the current user to the friend
+        $friendship2 = new Friend();
+        $friendship2->user_id = $idFriend;
+        $friendship2->friend_id = Auth::user()->id;
+        $friendship2->save();
+
+        return Response()->json(['etat' => true]);
+    }
+    //returns a list of friends of the current user 
+    public function getFriends()
+    {
+        return Auth::user()->friends;
+    }
+
+    public function getAllFriends()
+    {
+        return Friend::all();
+    }
+
 }

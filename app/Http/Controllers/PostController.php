@@ -109,6 +109,7 @@ class PostController extends Controller
         return ["deleted" => true];
     }
 
+
     private function getWhatPosts($what)
     {
         $posts_to_send = collect();
@@ -116,18 +117,23 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
-            
             $likeCount = $like->count();
             $post_to_send = array_merge($user->toArray(), $post->toArray());
+
             $isLikedByCurrentUser = (Like::select('id')
                 ->where([
                     ['user_id', '=', Auth::user()->id], ['post_id', "=", $post->id]
                 ])->get());
+
             $post_to_send = array_merge($post_to_send, ["like_count" => $likeCount]);
             $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) > 0]);
+
             if ($isLikedByCurrentUser->count() > 0)
                 $post_to_send = array_merge($post_to_send, ["like_id" => $isLikedByCurrentUser[0]->id]);
+
             $post_to_send = array_merge($post_to_send, ["likes" => $like]);
+            $post_to_send = array_merge($post_to_send, ["comments" => $like]);
+            
             $posts_to_send->push($post_to_send);
         }
         return $posts_to_send;
