@@ -116,6 +116,7 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
+            
             $likeCount = $like->count();
             $post_to_send = array_merge($user->toArray(), $post->toArray());
             $isLikedByCurrentUser = (Like::select('id')
