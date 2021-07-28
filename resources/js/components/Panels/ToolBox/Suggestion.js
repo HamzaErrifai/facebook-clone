@@ -3,9 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Suggestion(props) {
-    const { data } = props;
-    console.log(data);
-    const [isfriend, setIsFriend] = useState(false);
+    const { data, what } = props;
+    const [isFriend, setIsFriend] = useState(false);
 
     const handleMouseEnter = (e) => {
         e.target.children[0].classList.add("show");
@@ -25,9 +24,11 @@ function Suggestion(props) {
     };
 
     useEffect(() => {
-        axios.get("/api/friends").then((resp) => {
-            setIsFriend(data.id == resp.data.id);
-        });
+        if (what != "friends") {
+            axios.get("/api/friends").then((resp) => {
+                setIsFriend(resp.id == data.id);
+            });
+        } else setIsFriend(false);
     }, []);
     return (
         <Link
@@ -46,11 +47,11 @@ function Suggestion(props) {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    {/* {data.name.slice(0, 12).concat("...")} */}
+                    {data.name.slice(0, 12).concat("...")}
                     <span className="popuptext">{data.name}</span>
                 </div>
 
-                {!isfriend && (
+                {isFriend && (
                     <div className="pt-3 pr-2 ml-auto">
                         <i
                             className="fas fa-user-plus add-friend-icon"

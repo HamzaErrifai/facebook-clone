@@ -100,7 +100,8 @@ class UserController extends Controller
 
     public function getSuggestions()
     {
-        $suggestedUsers = User::where('id', '!=', auth()->id())->get();
+        //needs fixing
+        $suggestedUsers = User::where('id', '!=', Auth::user()->id)->get();
         return $suggestedUsers;
     }
 
@@ -134,12 +135,15 @@ class UserController extends Controller
     //returns a list of friends of the current user 
     public function getFriends()
     {
-        return Auth::user()->friends;
+        $friends = User::select('users.id', 'name', 'photo')
+            ->leftJoin('friends', 'friends.friend_id', '=', 'users.id')
+            ->where('friends.user_id', '=', Auth::user()->id)->get();
+
+        return $friends;
     }
 
     public function getAllFriends()
     {
         return Friend::all();
     }
-
 }

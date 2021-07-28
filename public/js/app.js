@@ -2813,12 +2813,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Suggestion(props) {
-  var data = props.data;
-  console.log(data);
+  var data = props.data,
+      what = props.what;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      isfriend = _useState2[0],
+      isFriend = _useState2[0],
       setIsFriend = _useState2[1];
 
   var handleMouseEnter = function handleMouseEnter(e) {
@@ -2839,9 +2839,11 @@ function Suggestion(props) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/friends").then(function (resp) {
-      setIsFriend(data.id == resp.data.id);
-    });
+    if (what != "friends") {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/friends").then(function (resp) {
+        setIsFriend(resp.id == data.id);
+      });
+    } else setIsFriend(false);
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/profile/".concat(data.id),
@@ -2854,15 +2856,15 @@ function Suggestion(props) {
           src: "storage/".concat(data.photo),
           className: "suggest-photo user-img"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "pt-3 popup",
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: [data.name.slice(0, 12).concat("..."), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "popuptext",
           children: data.name
-        })
-      }), !isfriend && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        })]
+      }), isFriend && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "pt-3 pr-2 ml-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
           className: "fas fa-user-plus add-friend-icon",
@@ -2967,7 +2969,8 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
           var _this$state2;
 
           showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Suggestion__WEBPACK_IMPORTED_MODULE_4__.default, {
-            data: this.state.suggestions[i]
+            data: this.state.suggestions[i],
+            what: this.props.what
           }, this.state.suggestions[i].id));
         }
 

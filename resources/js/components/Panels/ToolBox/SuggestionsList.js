@@ -30,10 +30,14 @@ export class SuggestionsList extends Component {
         if (this.state?.suggestions) {
             for (let i = 0; i < this.state?.suggestions.length; i++)
                 showList.push(
-                    <Suggestion data={this.state.suggestions[i]} key={this.state.suggestions[i].id}/>
+                    <Suggestion
+                        key={this.state.suggestions[i].id}
+                        data={this.state.suggestions[i]}
+                        what={this.props.what}
+                    />
                 );
             if (this.state.suggestions.length > 0)
-                return <div className="list-group" >{showList}</div>;
+                return <div className="list-group">{showList}</div>;
             return (
                 <div className="list-group">
                     <a className="list-group-item text-decoration-none text-dark">
