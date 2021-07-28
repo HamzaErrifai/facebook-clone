@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
-import BigLabel from "../../utils/BigLabel";
 import NoWhat from "../../utils/NoWhat";
 import Loading from "../../utils/Loading";
 

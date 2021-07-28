@@ -32,7 +32,7 @@ export class SuggestionsList extends Component {
                     <Link
                         key={this.state.suggestions[i].id}
                         to={`/profile/${this.state.suggestions[i].id}`}
-                        className="list-group-item text-dark text-decoration-none"
+                        className="list-group-item text-dark text-decoration-none border rounded mb-2 bg-white"
                     >
                         <div className="d-flex flex-row">
                             <div className="p-2">
@@ -41,7 +41,7 @@ export class SuggestionsList extends Component {
                                     className="suggest-photo user-img"
                                 />
                             </div>
-                            <div className="p-2">
+                            <div className="pt-3">
                                 {this.state.suggestions[i].name}
                             </div>
                         </div>

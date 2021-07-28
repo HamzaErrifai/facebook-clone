@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 export class CreatePost extends Component {
     constructor(props) {
         super(props);
-        this.contentRef = React.createRef();
         this.state = {
             title: "",
             content: "",
@@ -13,15 +12,15 @@ export class CreatePost extends Component {
     }
 
     handleTitleChange = (e) => {
-        this.setState((prevState) => ({
+        this.setState({
             title: e.target.value,
-        }));
+        });
     };
 
     handleContentChange = (e) => {
-        this.setState((prevState) => ({
+        this.setState({
             content: e.target.value,
-        }));
+        });
         e.target.value.length > 0
             ? $("#createBtn").attr("disabled", false)
             : $("#createBtn").attr("disabled", true);
@@ -122,7 +121,6 @@ export class CreatePost extends Component {
                                             placeholder="Content of the post"
                                             onChange={this.handleContentChange}
                                             value={this.state.content}
-                                            ref={this.contentRef}
                                         ></textarea>
                                     </div>
                                     <button
@@ -145,7 +143,6 @@ export class CreatePost extends Component {
                             className="btn btn-block bg-lightGray btn-n-sm"
                             data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onClick={this.handleCreateBtn}
                         >
                             What's on your mind?
                         </button>

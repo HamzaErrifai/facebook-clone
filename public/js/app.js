@@ -2171,18 +2171,14 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleTitleChange", function (e) {
-      _this.setState(function (prevState) {
-        return {
-          title: e.target.value
-        };
+      _this.setState({
+        title: e.target.value
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleContentChange", function (e) {
-      _this.setState(function (prevState) {
-        return {
-          content: e.target.value
-        };
+      _this.setState({
+        content: e.target.value
       });
 
       e.target.value.length > 0 ? $("#createBtn").attr("disabled", false) : $("#createBtn").attr("disabled", true);
@@ -2228,7 +2224,6 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       });
     });
 
-    _this.contentRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.state = {
       title: "",
       content: "",
@@ -2290,8 +2285,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
                       rows: "3",
                       placeholder: "Content of the post",
                       onChange: this.handleContentChange,
-                      value: this.state.content,
-                      ref: this.contentRef
+                      value: this.state.content
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                     className: "btn btn-primary btn-block",
@@ -2312,7 +2306,6 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               className: "btn btn-block bg-lightGray btn-n-sm",
               "data-toggle": "modal",
               "data-target": "#exampleModalCenter",
-              onClick: this.handleCreateBtn,
               children: "What's on your mind?"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -2569,10 +2562,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Post */ "./resources/js/components/Panels/Posts/Post.js");
 /* harmony import */ var _CreatePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CreatePost */ "./resources/js/components/Panels/Posts/CreatePost.js");
-/* harmony import */ var _utils_BigLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/BigLabel */ "./resources/js/components/utils/BigLabel.js");
-/* harmony import */ var _utils_NoWhat__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/NoWhat */ "./resources/js/components/utils/NoWhat.js");
-/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/Loading */ "./resources/js/components/utils/Loading.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils_NoWhat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/NoWhat */ "./resources/js/components/utils/NoWhat.js");
+/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/Loading */ "./resources/js/components/utils/Loading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -2602,7 +2594,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -2692,18 +2683,18 @@ var PostShow = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "container post-show-container dummy-push mt-2 mb-2",
-        children: [this.props.isCreateAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [this.props.isCreateAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
           setPosts: this.setPosts
         }), this.state.posts && !this.state.isLoading ? this.state.posts.length > 0 ? this.state.posts.map(function (elm) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
             data: elm,
             removePost: _this2.removePost
           }, elm.id);
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_NoWhat__WEBPACK_IMPORTED_MODULE_6__.default, {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_utils_NoWhat__WEBPACK_IMPORTED_MODULE_5__.default, {
           what: "posts"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_7__.default, {})]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_6__.default, {})]
       });
     }
   }]);
@@ -2737,7 +2728,7 @@ function LeftPannel() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "position-fixed overflow-auto stick",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-      className: "list-group-item list-group-item-action bg-light border-0",
+      className: "list-group-item list-group-item-action bg-light border-0 text-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
         className: "",
         children: "Suggestions"
@@ -2775,7 +2766,7 @@ function RightPannel() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     id: "sidebar-wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-      className: "list-group-item list-group-item-action bg-light border-0",
+      className: "list-group-item list-group-item-action bg-light border-0 text-center",
       children: "Friends"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SuggestionsList__WEBPACK_IMPORTED_MODULE_1__.default, {
       what: "friends"
@@ -2878,7 +2869,7 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
 
           showList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
             to: "/profile/".concat(this.state.suggestions[i].id),
-            className: "list-group-item text-dark text-decoration-none",
+            className: "list-group-item text-dark text-decoration-none border rounded mb-2 bg-white",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "d-flex flex-row",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -2888,7 +2879,7 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
                   className: "suggest-photo user-img"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                className: "p-2",
+                className: "pt-3",
                 children: this.state.suggestions[i].name
               })]
             })
@@ -3413,44 +3404,6 @@ var Welcome = /*#__PURE__*/function (_Component) {
   return Welcome;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Welcome);
-
-/***/ }),
-
-/***/ "./resources/js/components/utils/BigLabel.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/utils/BigLabel.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-function BigLabel(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h1", {
-    className: "font-weight-bold d-flex justify-content-between",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "p-2 m-auto",
-      children: props.txt
-    }), props.closeBtn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      type: "button",
-      className: "btn btn-white btn-circle btn-md btn-lightGray mr-1 mt-1",
-      onClick: props.handleClose,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-        className: "fas fa-times"
-      })
-    })]
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BigLabel);
 
 /***/ }),
 
@@ -8025,7 +7978,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10{\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10{\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n.list-group-item{\r\n    padding: 2px;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
