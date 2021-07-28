@@ -38,7 +38,7 @@ export class SuggestionsList extends Component {
                             <div className="p-2">
                                 <img
                                     src={`storage/${this.state.suggestions[i].photo}`}
-                                    className="suggest-photo"
+                                    className="suggest-photo user-img"
                                 />
                             </div>
                             <div className="p-2">

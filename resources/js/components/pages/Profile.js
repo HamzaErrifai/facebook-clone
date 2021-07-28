@@ -70,7 +70,7 @@ const Profile = () => {
                     <img
                         id="imageResult"
                         src={`/storage/${user.photo}`}
-                        className="profile-img"
+                        className="user-img profile-img shadow"
                         onClick={handleShowUpload}
                     />
                 </div>

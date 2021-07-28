@@ -3,9 +3,9 @@
 }
 
 .popup-container {
-    background-color: rgba(255, 255, 255, 0.2)!important;
-    
-    background-image: url("/imgs/noisy-bg.png")!important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+
+    background-image: url("/imgs/noisy-bg.png") !important;
     background-repeat: repeat;
 }
 
@@ -89,7 +89,6 @@
     font-size: 1.2em;
 }
 
-
 .no-txt-inherit {
     font-size: revert;
     line-height: 150%;
@@ -119,7 +118,8 @@
     background-color: #f8f9fa;
     border: 0;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
     color: black;
     background-color: inherit;
 }
@@ -151,10 +151,15 @@
 .upload-input {
     width: 500px;
 }
+.user-img{
+    object-position: 50% 50%;
+    object-fit: cover;
+}
 
 .profile-img {
     width: 150px;
     height: 150px;
+    border: solid white 8px;
     border-radius: 50%;
     cursor: pointer;
 }
