@@ -7,7 +7,7 @@ function LeftPannel() {
             <a
                 className="list-group-item list-group-item-action bg-light border-0 text-center"
             >
-                <span className="">
+                <span className="text-primary">
 
                 Suggestions
                 </span>

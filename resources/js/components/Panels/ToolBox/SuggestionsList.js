@@ -24,6 +24,19 @@ export class SuggestionsList extends Component {
             .catch((err) => console.log(err));
     };
 
+    handleMouseEnter = (e) => {
+        e.target.children[0].classList.add("show");
+    };
+    handleMouseLeave = (e) => {
+        e.target.children[0].classList.remove("show");
+    };
+
+    handleAddFriend = (e) => {
+        e.preventDefault();
+
+        //do the request
+    };
+
     render() {
         let showList = [];
         if (this.state?.suggestions) {
@@ -41,8 +54,24 @@ export class SuggestionsList extends Component {
                                     className="suggest-photo user-img"
                                 />
                             </div>
-                            <div className="pt-3">
-                                {this.state.suggestions[i].name}
+                            <div
+                                className="pt-3 popup"
+                                onMouseEnter={this.handleMouseEnter}
+                                onMouseLeave={this.handleMouseLeave}
+                            >
+                                {this.state.suggestions[i].name
+                                    .slice(0, 12)
+                                    .concat("...")}
+                                <span className="popuptext">
+                                    {this.state.suggestions[i].name}
+                                </span>
+                            </div>
+
+                            <div className="pt-3 pr-2 ml-auto">
+                                <i
+                                    className="fas fa-user-plus add-friend-icon"
+                                    onClick={this.handleAddFriend}
+                                ></i>
                             </div>
                         </div>
                     </Link>

@@ -2730,7 +2730,7 @@ function LeftPannel() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
       className: "list-group-item list-group-item-action bg-light border-0 text-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "",
+        className: "text-primary",
         children: "Suggestions"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SuggestionsList__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -2850,6 +2850,18 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleMouseEnter", function (e) {
+      e.target.children[0].classList.add("show");
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleMouseLeave", function (e) {
+      e.target.children[0].classList.remove("show");
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAddFriend", function (e) {
+      e.preventDefault(); //do the request
+    });
+
     _this.state = {
       suggestions: []
     };
@@ -2878,9 +2890,20 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
                   src: "storage/".concat(this.state.suggestions[i].photo),
                   className: "suggest-photo user-img"
                 })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "pt-3 popup",
+                onMouseEnter: this.handleMouseEnter,
+                onMouseLeave: this.handleMouseLeave,
+                children: [this.state.suggestions[i].name.slice(0, 12).concat("..."), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                  className: "popuptext",
+                  children: this.state.suggestions[i].name
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                className: "pt-3",
-                children: this.state.suggestions[i].name
+                className: "pt-3 pr-2 ml-auto",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+                  className: "fas fa-user-plus add-friend-icon",
+                  onClick: this.handleAddFriend
+                })
               })]
             })
           }, this.state.suggestions[i].id));
@@ -7978,7 +8001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10{\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n.list-group-item{\r\n    padding: 2px;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10{\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n.list-group-item{\r\n    padding: 2px;\r\n}\r\n.add-friend-icon {\r\n    z-index: 1;\r\n    position: relative;\r\n}\r\n\r\n\r\n/* Popup container - can be anything you want */\r\n.popup {\r\n    position: relative;\r\n    display: inline-block;\r\n    cursor: pointer;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n  }\r\n  \r\n  /* The actual popup */\r\n  .popup .popuptext {\r\n    visibility: hidden;\r\n    width: 160px;\r\n    background-color: #555;\r\n    color: #fff;\r\n    text-align: center;\r\n    border-radius: 6px;\r\n    padding: 8px 0;\r\n    position: absolute;\r\n    z-index: 1;\r\n    bottom: 125%;\r\n    left: 50%;\r\n    margin-left: -80px;\r\n  }\r\n  \r\n  /* Popup arrow */\r\n  .popup .popuptext::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 100%;\r\n    left: 50%;\r\n    margin-left: -5px;\r\n    border-width: 5px;\r\n    border-style: solid;\r\n    border-color: #555 transparent transparent transparent;\r\n  }\r\n  \r\n  /* Toggle this class - hide and show the popup */\r\n  .popup .show {\r\n    visibility: visible;\r\n    z-index: 1000;\r\n  }\r\n  \r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
