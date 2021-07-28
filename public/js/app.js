@@ -2198,6 +2198,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
+      $("#exampleModalCenter").modal('hide');
 
       _this.createPost();
 
@@ -2205,7 +2206,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
         toast: true,
         position: "bottom-end",
         showConfirmButton: false,
-        timer: 7000,
+        timer: 5000,
         timerProgressBar: false,
         showCloseButton: true,
         didOpen: function didOpen(toast) {
@@ -2219,13 +2220,6 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleCreateBtn", function (e) {
-      _this.setState({
-        open: true
-      }, function () {// this.contentRef.current.focus();
-      });
-    });
-
     _defineProperty(_assertThisInitialized(_this), "createPost", function () {
       axios.post(window.Laravel.url + "/api/addpost", _this.state.posts).then(function (response) {
         if (response.data.etat) {
@@ -2236,18 +2230,11 @@ var CreatePost = /*#__PURE__*/function (_Component) {
               title: "",
               content: "",
               name: window.Laravel.user
-            },
-            open: false
+            }
           });
         }
       })["catch"](function (error) {
         console.log(error);
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleClose", function () {
-      _this.setState({
-        open: false
       });
     });
 
@@ -2257,8 +2244,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
         title: "",
         content: "",
         name: window.Laravel.user
-      },
-      open: false
+      }
     };
     return _this;
   }
@@ -2268,7 +2254,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "modal fade",
+          className: "modal popup-container",
           id: "exampleModalCenter",
           tabIndex: "-1",
           role: "dialog",
@@ -2278,7 +2264,7 @@ var CreatePost = /*#__PURE__*/function (_Component) {
             className: "modal-dialog modal-dialog-centered",
             role: "document",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "modal-content",
+              className: "modal-content shadow border-0",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "modal-header",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {

@@ -8,7 +8,6 @@ export class CreatePost extends Component {
         this.contentRef = React.createRef();
         this.state = {
             posts: { title: "", content: "", name: window.Laravel.user },
-            open: false,
         };
     }
     handleTitleChange = (e) => {
@@ -25,12 +24,13 @@ export class CreatePost extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        $("#exampleModalCenter").modal('hide');
         this.createPost();
         const Toast = Swal.mixin({
             toast: true,
             position: "bottom-end",
             showConfirmButton: false,
-            timer: 7000,
+            timer: 5000,
             timerProgressBar: false,
             showCloseButton: true,
             didOpen: (toast) => {
@@ -42,11 +42,6 @@ export class CreatePost extends Component {
         Toast.fire({
             icon: "success",
             title: "Post Added",
-        });
-    };
-    handleCreateBtn = (e) => {
-        this.setState({ open: true }, () => {
-            // this.contentRef.current.focus();
         });
     };
 
@@ -62,7 +57,6 @@ export class CreatePost extends Component {
                             content: "",
                             name: window.Laravel.user,
                         },
-                        open: false,
                     });
                 }
             })
@@ -71,17 +65,11 @@ export class CreatePost extends Component {
             });
     };
 
-    handleClose = () => {
-        this.setState({
-            open: false,
-        });
-    };
-
     render() {
         return (
             <>
                 <div
-                    className="modal fade"
+                    className="modal popup-container"
                     id="exampleModalCenter"
                     tabIndex="-1"
                     role="dialog"
@@ -92,7 +80,7 @@ export class CreatePost extends Component {
                         className="modal-dialog modal-dialog-centered"
                         role="document"
                     >
-                        <div className="modal-content">
+                        <div className="modal-content shadow border-0">
                             <div className="modal-header">
                                 <h5
                                     className="modal-title"
