@@ -82,6 +82,10 @@
     display: none;
 }
 
+.m-neg-10{
+    margin-top: -10px;
+}
+
 .stick {
     height: 100vh;
     width: 230px;
@@ -162,6 +166,12 @@
     border: solid white 8px;
     border-radius: 50%;
     cursor: pointer;
+}
+.cover-img{
+    object-position: 50% 50%;
+    object-fit: cover;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 @media screen and (max-width: 895px) {
