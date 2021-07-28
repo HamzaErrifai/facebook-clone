@@ -2163,6 +2163,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var CreatePost = /*#__PURE__*/function (_Component) {
   _inherits(CreatePost, _Component);
 
@@ -2199,23 +2200,30 @@ var CreatePost = /*#__PURE__*/function (_Component) {
       e.preventDefault();
 
       _this.createPost();
+
+      var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 7000,
+        timerProgressBar: false,
+        showCloseButton: true,
+        didOpen: function didOpen(toast) {
+          toast.addEventListener("mouseenter", (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().stopTimer));
+          toast.addEventListener("mouseleave", (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().resumeTimer));
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Post Added"
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleCreateBtn", function (e) {
-      e.preventDefault();
-      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
-        title: "Create Post",
-        width: 600,
-        showCloseButton: true,
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        customClass: {
-          container: "popup-container",
-          popup: "shadow"
-        }
-      }); // this.setState({ open: true }, () => {
-      //     this.contentRef.current.focus();
-      // });
+      _this.setState({
+        open: true
+      }, function () {// this.contentRef.current.focus();
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "createPost", function () {
@@ -2258,64 +2266,93 @@ var CreatePost = /*#__PURE__*/function (_Component) {
   _createClass(CreatePost, [{
     key: "render",
     value: function render() {
-      return this.state.open ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "shadow-sm bg-white rounded",
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "border-bottom",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_utils_BigLabel__WEBPACK_IMPORTED_MODULE_2__.default, {
-            txt: "Create Post",
-            closeBtn: true,
-            handleClose: this.handleClose
+          className: "modal fade",
+          id: "exampleModalCenter",
+          tabIndex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "modal-dialog modal-dialog-centered",
+            role: "document",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "modal-content",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "modal-header",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
+                  className: "modal-title",
+                  id: "exampleModalLongTitle",
+                  children: "Create post"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                  type: "button",
+                  className: "close",
+                  "data-dismiss": "modal",
+                  "aria-label": "Close",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                    "aria-hidden": "true",
+                    children: "\xD7"
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "modal-body",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                  className: "p-3",
+                  onSubmit: this.handleSubmit,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "form-group",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "text",
+                      className: "form-control",
+                      placeholder: "Title",
+                      onChange: this.handleTitleChange,
+                      value: this.state.title
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "form-group",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+                      className: "form-control",
+                      rows: "3",
+                      placeholder: "Content of the post",
+                      onChange: this.handleContentChange,
+                      value: this.state.content,
+                      ref: this.contentRef
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                    className: "btn btn-primary btn-block",
+                    children: "Create Post"
+                  })]
+                })
+              })]
+            })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-          className: "p-3",
-          onSubmit: this.handleSubmit,
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "shadow-sm bg-white rounded",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "form-group",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              placeholder: "Title",
-              onChange: this.handleTitleChange,
-              value: this.state.title
+            className: "pl-4 pr-4 pt-2 pb-2",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "button",
+              className: "btn btn-block bg-lightGray btn-n-sm",
+              "data-toggle": "modal",
+              "data-target": "#exampleModalCenter",
+              onClick: this.handleCreateBtn,
+              children: "What's on your mind?"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "form-group",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
-              className: "form-control",
-              rows: "3",
-              placeholder: "Content of the post",
-              onChange: this.handleContentChange,
-              value: this.state.content,
-              ref: this.contentRef
+            className: "border-top text-center pt-1 pb-1",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+              className: "btn btn-n-sm fnt-size-15 btn-lightGray",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+                className: "far fa-image",
+                style: {
+                  color: "green"
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: " "
+              }), "Photos"]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "btn btn-primary btn-block",
-            children: "Create Post"
           })]
-        })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "shadow-sm bg-white rounded",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "pl-4 pr-4 pt-2 pb-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "btn btn-block bg-lightGray btn-n-sm",
-            onClick: this.handleCreateBtn,
-            children: "What's on your mind?"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "border-top text-center pt-1 pb-1",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
-            className: "btn btn-n-sm fnt-size-15 btn-lightGray",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
-              className: "far fa-image",
-              style: {
-                color: "green"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: " "
-            }), "Photos"]
-          })
         })]
       });
     }

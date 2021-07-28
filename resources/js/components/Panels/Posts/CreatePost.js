@@ -12,7 +12,7 @@ export class CreatePost extends Component {
         };
     }
     handleTitleChange = (e) => {
-            this.setState((prevState) => ({
+        this.setState((prevState) => ({
             posts: { ...prevState.posts, title: e.target.value },
         }));
     };
@@ -26,24 +26,28 @@ export class CreatePost extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.createPost();
-    };
-    handleCreateBtn = (e) => {
-        e.preventDefault();
-        Swal.fire({
-            title: "Create Post",
-            width: 600,
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-end",
+            showConfirmButton: false,
+            timer: 7000,
+            timerProgressBar: false,
             showCloseButton: true,
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            customClass: {
-                container: "popup-container",
-                popup: "shadow",
+            didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
             },
         });
 
-        // this.setState({ open: true }, () => {
-        //     this.contentRef.current.focus();
-        // });
+        Toast.fire({
+            icon: "success",
+            title: "Post Added",
+        });
+    };
+    handleCreateBtn = (e) => {
+        this.setState({ open: true }, () => {
+            // this.contentRef.current.focus();
+        });
     };
 
     createPost = () => {
@@ -74,62 +78,95 @@ export class CreatePost extends Component {
     };
 
     render() {
-        return this.state.open ? (
-            <div className="shadow-sm bg-white rounded">
-                <div className="border-bottom">
-                    <BigLabel
-                        txt="Create Post"
-                        closeBtn={true}
-                        handleClose={this.handleClose}
-                    />
-                </div>
-                <form className="p-3" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Title"
-                            onChange={this.handleTitleChange}
-                            value={this.state.title}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <textarea
-                            className="form-control"
-                            rows="3"
-                            placeholder="Content of the post"
-                            onChange={this.handleContentChange}
-                            value={this.state.content}
-                            ref={this.contentRef}
-                        ></textarea>
-                    </div>
-                    <button className="btn btn-primary btn-block">
-                        Create Post
-                    </button>
-                </form>
-            </div>
-        ) : (
-            <div className="shadow-sm bg-white rounded">
-                <div className="pl-4 pr-4 pt-2 pb-2">
-                    <button
-                        className="btn btn-block bg-lightGray btn-n-sm"
-                        onClick={this.handleCreateBtn}
+        return (
+            <>
+                <div
+                    className="modal fade"
+                    id="exampleModalCenter"
+                    tabIndex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalCenterTitle"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="modal-dialog modal-dialog-centered"
+                        role="document"
                     >
-                        What's on your mind?
-                    </button>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5
+                                    className="modal-title"
+                                    id="exampleModalLongTitle"
+                                >
+                                    Create post
+                                </h5>
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form
+                                    className="p-3"
+                                    onSubmit={this.handleSubmit}
+                                >
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Title"
+                                            onChange={this.handleTitleChange}
+                                            value={this.state.title}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <textarea
+                                            className="form-control"
+                                            rows="3"
+                                            placeholder="Content of the post"
+                                            onChange={this.handleContentChange}
+                                            value={this.state.content}
+                                            ref={this.contentRef}
+                                        ></textarea>
+                                    </div>
+                                    <button className="btn btn-primary btn-block">
+                                        Create Post
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="border-top text-center pt-1 pb-1">
-                    <button className="btn btn-n-sm fnt-size-15 btn-lightGray">
-                        <i
-                            className="far fa-image"
-                            style={{ color: "green" }}
-                        ></i>
-                        <span> </span>
-                        Photos
-                    </button>
+
+                <div className="shadow-sm bg-white rounded">
+                    <div className="pl-4 pr-4 pt-2 pb-2">
+                        <button
+                            type="button"
+                            className="btn btn-block bg-lightGray btn-n-sm"
+                            data-toggle="modal"
+                            data-target="#exampleModalCenter"
+                            onClick={this.handleCreateBtn}
+                        >
+                            What's on your mind?
+                        </button>
+                    </div>
+                    <div className="border-top text-center pt-1 pb-1">
+                        <button className="btn btn-n-sm fnt-size-15 btn-lightGray">
+                            <i
+                                className="far fa-image"
+                                style={{ color: "green" }}
+                            ></i>
+                            <span> </span>
+                            Photos
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 }
