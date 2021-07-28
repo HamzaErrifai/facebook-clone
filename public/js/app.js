@@ -2816,10 +2816,10 @@ function Suggestion(props) {
   var data = props.data,
       what = props.what;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      isFriend = _useState2[0],
-      setIsFriend = _useState2[1];
+      hideAddBtn = _useState2[0],
+      setHideAddBtn = _useState2[1];
 
   var handleMouseEnter = function handleMouseEnter(e) {
     e.target.children[0].classList.add("show");
@@ -2832,18 +2832,19 @@ function Suggestion(props) {
   var handleAddFriend = function handleAddFriend(e) {
     e.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addfriend/" + data.id).then(function (resp) {
-      setIsFriend(true);
+      //friend added
+      setHideAddBtn(true);
     })["catch"](function (err) {
       return console.log(err);
     });
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    if (what != "friends") {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/friends").then(function (resp) {
-        setIsFriend(resp.id == data.id);
-      });
-    } else setIsFriend(false);
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/friends").then(function (resp) {
+      setHideAddBtn(resp.data.find(function (element) {
+        return element.id == data.id;
+      }) ? true : false);
+    });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/profile/".concat(data.id),
@@ -2864,7 +2865,7 @@ function Suggestion(props) {
           className: "popuptext",
           children: data.name
         })]
-      }), isFriend && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), !hideAddBtn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "pt-3 pr-2 ml-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
           className: "fas fa-user-plus add-friend-icon",

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Suggestion(props) {
     const { data, what } = props;
-    const [isFriend, setIsFriend] = useState(false);
+    const [hideAddBtn, setHideAddBtn] = useState(true);
 
     const handleMouseEnter = (e) => {
         e.target.children[0].classList.add("show");
@@ -18,17 +18,20 @@ function Suggestion(props) {
         axios
             .post("/api/addfriend/" + data.id)
             .then((resp) => {
-                setIsFriend(true);
+                //friend added
+                setHideAddBtn(true);
             })
             .catch((err) => console.log(err));
     };
 
     useEffect(() => {
-        if (what != "friends") {
-            axios.get("/api/friends").then((resp) => {
-                setIsFriend(resp.id == data.id);
-            });
-        } else setIsFriend(false);
+        axios.get("/api/friends").then((resp) => {
+            setHideAddBtn(
+                resp.data.find((element) => element.id == data.id)
+                    ? true
+                    : false
+            );
+        });
     }, []);
     return (
         <Link
@@ -51,7 +54,7 @@ function Suggestion(props) {
                     <span className="popuptext">{data.name}</span>
                 </div>
 
-                {isFriend && (
+                {!hideAddBtn && (
                     <div className="pt-3 pr-2 ml-auto">
                         <i
                             className="fas fa-user-plus add-friend-icon"
