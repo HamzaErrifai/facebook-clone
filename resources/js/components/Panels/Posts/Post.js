@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import CommentList from "./CommentList";
 
 export class Post extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export class Post extends Component {
             liked: this.props.data.liked,
             post: {},
             likeCount: this.props.data.like_count,
+            commentsCount: this.props.data.like_count,
             optionAvailable: this.props.data.user_id == window.Laravel.user.id,
         };
     }
@@ -76,6 +78,42 @@ export class Post extends Component {
 
         return (
             <div className="card shadow-sm rounded mb-2 mt-2" key={data.id}>
+                <div
+                    className="modal popup-container"
+                    id="commentsModal"
+                    tabIndex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalCenterTitle"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="modal-dialog modal-dialog-centered"
+                        role="document"
+                    >
+                        <div className="modal-content shadow border-0">
+                            <div className="modal-header">
+                                <h5
+                                    className="modal-title"
+                                    id="exampleModalLongTitle"
+                                >
+                                    Comments
+                                </h5>
+                                <button
+                                    type="button"
+                                    className="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <CommentList />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
                         <Link
@@ -149,6 +187,15 @@ export class Post extends Component {
                                     <span>{this.state.likeCount} likes</span>
                                 </>
                             )}
+                        </button>
+                        <button
+                            className="btn btn-lightGray"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#commentsModal"
+                        >
+                            <i className="far fa-comment-alt"></i>{" "}
+                            <span>{this.state.commentsCount} comments</span>
                         </button>
                     </div>
                 </div>

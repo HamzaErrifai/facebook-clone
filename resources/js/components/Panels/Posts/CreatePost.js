@@ -72,7 +72,7 @@ export class CreatePost extends Component {
             <>
                 <div
                     className="modal popup-container"
-                    id="exampleModalCenter"
+                    id="createPostModal"
                     tabIndex="-1"
                     role="dialog"
                     aria-labelledby="exampleModalCenterTitle"
@@ -139,10 +139,10 @@ export class CreatePost extends Component {
                 <div className="shadow-sm bg-white rounded">
                     <div className="pl-4 pr-4 pt-2 pb-2">
                         <button
-                            type="button"
                             className="btn btn-block bg-lightGray btn-n-sm"
+                            type="button"
                             data-toggle="modal"
-                            data-target="#exampleModalCenter"
+                            data-target="#createPostModal"
                         >
                             What's on your mind?
                         </button>

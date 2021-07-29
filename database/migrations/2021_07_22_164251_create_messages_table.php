@@ -16,14 +16,13 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->string('time_msg');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('friend_id');
             $table->foreign('friend_id')->references('friend_id')->on('friends');
-            
+
             $table->timestamps();
         });
     }

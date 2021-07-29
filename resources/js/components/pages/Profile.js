@@ -65,7 +65,7 @@ const Profile = () => {
 
     if (user?.name)
         return (
-            <div className="container m-neg-10" >
+            <div className="m-neg-10" >
                 <div className="d-flex justify-content-center">
                     <img src="https://via.placeholder.com/820x312" className="cover-img" />
                 </div>
