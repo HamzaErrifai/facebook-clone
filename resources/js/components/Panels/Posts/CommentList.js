@@ -1,27 +1,17 @@
 import React, { Component } from "react";
+import Comment from "./Comment";
 
 export class CommentList extends Component {
     render() {
-        return (
-            <table>
-                <tr>
-                    <td>Hamza</td>
-                    <td>Wowo</td>
-                </tr>
-                <tr>
-                    <td>Abbass</td>
-                    <td>hh</td>
-                </tr>
-                <tr>
-                    <td>Lpa7r</td>
-                    <td>hh</td>
-                </tr>
-                <tr>
-                    <td>Hamza</td>
-                    <td>hh</td>
-                </tr>
-            </table>
-        );
+        let commentList = [];
+        for (let i = 0; i < this.props.data?.length; i++)
+            commentList.push(
+                <Comment
+                    key={this.props.data[i].id}
+                    data={this.props.data[i]}
+                />
+            );
+        return <div>{commentList}</div>;
     }
 }
 

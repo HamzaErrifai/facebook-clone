@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
@@ -117,7 +118,7 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
-            $likeCount = $like->count();
+            $comments = Comment::where('post_id', $post->id)->get();
             $post_to_send = array_merge($user->toArray(), $post->toArray());
 
             $isLikedByCurrentUser = (Like::select('id')
@@ -125,15 +126,16 @@ class PostController extends Controller
                     ['user_id', '=', Auth::user()->id], ['post_id', "=", $post->id]
                 ])->get());
 
-            $post_to_send = array_merge($post_to_send, ["like_count" => $likeCount]);
+            $post_to_send = array_merge($post_to_send, ["like_count" => $like->count()]);
+            $post_to_send = array_merge($post_to_send, ["comment_count" => $comments->count()]);
             $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) > 0]);
 
             if ($isLikedByCurrentUser->count() > 0)
                 $post_to_send = array_merge($post_to_send, ["like_id" => $isLikedByCurrentUser[0]->id]);
 
             $post_to_send = array_merge($post_to_send, ["likes" => $like]);
-            $post_to_send = array_merge($post_to_send, ["comments" => $like]);
-            
+            $post_to_send = array_merge($post_to_send, ["comments" => $comments]);
+
             $posts_to_send->push($post_to_send);
         }
         return $posts_to_send;

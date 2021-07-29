@@ -12,9 +12,10 @@ export class Post extends Component {
             liked: this.props.data.liked,
             post: {},
             likeCount: this.props.data.like_count,
-            commentsCount: this.props.data.like_count,
+            commentsCount: this.props.data.comment_count,
             optionAvailable: this.props.data.user_id == window.Laravel.user.id,
         };
+        
     }
 
     handleLikeClick = () => {
@@ -72,7 +73,7 @@ export class Post extends Component {
             }
         });
     };
-
+    
     render() {
         const { data } = this.props;
 
@@ -108,7 +109,7 @@ export class Post extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <CommentList />
+                                <CommentList data={data.comments} />
                             </div>
                         </div>
                     </div>
