@@ -3577,7 +3577,9 @@ var Profile = function Profile() {
   if (!Number.isInteger(Number.parseInt(id))) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
     to: "/"
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {});
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {
+    what: "profile"
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
@@ -3751,6 +3753,19 @@ function Loading(props) {
     }
   });
 
+  var profileImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    style: {
+      textAlign: "center"
+    },
+    className: "m-neg-10",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+      src: "/imgs/profileLoading.svg",
+      style: {
+        width: "50%"
+      }
+    })
+  });
+
   var postsLoading = [postImg, postImg, postImg];
   var suggestLoading = [suggestImg, suggestImg, suggestImg];
 
@@ -3765,6 +3780,10 @@ function Loading(props) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         children: suggestLoading
       });
+      break;
+
+    case "profile":
+      return profileImg;
       break;
 
     case "spinner":

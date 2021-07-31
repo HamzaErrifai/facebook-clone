@@ -16,6 +16,14 @@ function Loading(props) {
             style={{ width: "100%" }}
         />
     );
+    const profileImg = (
+        <div style={{ textAlign: "center" }} className="m-neg-10">
+            <img
+                src="/imgs/profileLoading.svg"
+                style={{ width: "50%" }}
+            />
+        </div>
+    );
     const postsLoading = [postImg, postImg, postImg];
     const suggestLoading = [suggestImg, suggestImg, suggestImg];
 
@@ -25,6 +33,9 @@ function Loading(props) {
             break;
         case "suggest":
             return <div>{suggestLoading}</div>;
+            break;
+        case "profile":
+            return profileImg;
             break;
         case "spinner":
             return (

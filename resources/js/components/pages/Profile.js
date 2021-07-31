@@ -96,7 +96,7 @@ const Profile = () => {
             </div>
         );
     if (!Number.isInteger(Number.parseInt(id))) return <Redirect to="/" />;
-    return <Loading />;
+    return <Loading what="profile" />;
 };
 
 export default Profile;
