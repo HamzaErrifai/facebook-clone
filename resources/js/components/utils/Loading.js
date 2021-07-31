@@ -2,40 +2,22 @@ import React from "react";
 
 function Loading(props) {
     const { what } = props;
-    const postsLoading = [
+    const postImg = (
         <img
             src="/imgs/postsLoading.svg"
             className="rounded bg-white mt-2 shadow-sm"
             style={{ width: "100%" }}
-        />,
-        <img
-            src="/imgs/postsLoading.svg"
-            className="rounded bg-white mt-2 shadow-sm"
-            style={{ width: "100%" }}
-        />,
-        <img
-            src="/imgs/postsLoading.svg"
-            className="rounded bg-white mt-2 shadow-sm"
-            style={{ width: "100%" }}
-        />,
-    ];
-    const suggestLoading = [
+        />
+    );
+    const suggestImg = (
         <img
             src="/imgs/suggestLoading.svg"
             className="rounded bg-white mt-2 shadow-sm"
             style={{ width: "100%" }}
-        />,
-        <img
-            src="/imgs/suggestLoading.svg"
-            className="rounded bg-white mt-2 shadow-sm"
-            style={{ width: "100%" }}
-        />,
-        <img
-            src="/imgs/suggestLoading.svg"
-            className="rounded bg-white mt-2 shadow-sm"
-            style={{ width: "100%" }}
-        />,
-    ];
+        />
+    );
+    const postsLoading = [postImg, postImg, postImg];
+    const suggestLoading = [suggestImg, suggestImg, suggestImg];
 
     switch (what) {
         case "post":

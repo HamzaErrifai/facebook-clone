@@ -3734,44 +3734,25 @@ __webpack_require__.r(__webpack_exports__);
 
 function Loading(props) {
   var what = props.what;
-  var postsLoading = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+
+  var postImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
     src: "/imgs/postsLoading.svg",
     className: "rounded bg-white mt-2 shadow-sm",
     style: {
       width: "100%"
     }
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/postsLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/postsLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  })];
-  var suggestLoading = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+  });
+
+  var suggestImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
     src: "/imgs/suggestLoading.svg",
     className: "rounded bg-white mt-2 shadow-sm",
     style: {
       width: "100%"
     }
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/suggestLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/suggestLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  })];
+  });
+
+  var postsLoading = [postImg, postImg, postImg];
+  var suggestLoading = [suggestImg, suggestImg, suggestImg];
 
   switch (what) {
     case "post":
