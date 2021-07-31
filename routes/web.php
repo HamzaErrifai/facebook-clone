@@ -16,13 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 #users
@@ -41,9 +35,11 @@ Route::get('/api/posts', [PostController::class, 'getPosts']);
 Route::get('/api/postsof/{id}', [PostController::class, 'getPostsOf']);
 Route::get('/api/myposts', [PostController::class, 'getMyPosts']);
 Route::get('/api/post/{id}', [PostController::class, 'getPost']);
+Route::get('/api/post/{id}/comments', [PostController::class, 'getPostComments']);
 Route::put('/api/post/{id}', [PostController::class, 'update']);
 Route::post('/api/addpost', [PostController::class, 'store']);
 Route::delete('/api/post/{id}', [PostController::class, 'destroy']);
+
 
 #likes
 Route::post('/api/likepost', [PostController::class, 'likePost']);

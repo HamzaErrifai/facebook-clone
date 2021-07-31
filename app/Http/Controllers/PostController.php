@@ -173,6 +173,13 @@ class PostController extends Controller
         return $post_to_send;
     }
 
+    public function getPostComments($id)
+    {
+
+        $comments = Comment::where('post_id', $id)->get();
+        return $comments;
+    }
+
     public function likePost(Request $request)
     {
         $like = new Like();

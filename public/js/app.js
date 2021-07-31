@@ -2131,8 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Comment(props) {
-  var data = props.data; // console.log(data.id, data);
-
+  var data = props.data;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "p-1",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -3736,54 +3735,55 @@ __webpack_require__.r(__webpack_exports__);
 
 function Loading(props) {
   var what = props.what;
-
-  var postImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/postsLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  });
-
-  var suggestImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-    src: "/imgs/suggestLoading.svg",
-    className: "rounded bg-white mt-2 shadow-sm",
-    style: {
-      width: "100%"
-    }
-  });
-
-  var profileImg = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    style: {
-      textAlign: "center"
-    },
-    className: "m-neg-10",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      src: "/imgs/profileLoading.svg",
-      style: {
-        width: "50%"
-      }
-    })
-  });
-
-  var postsLoading = [postImg, postImg, postImg];
-  var suggestLoading = [suggestImg, suggestImg, suggestImg];
+  var postsLoading = [];
+  var suggestLoading = [];
 
   switch (what) {
     case "post":
+      for (var i = 0; i < 3; i++) {
+        postsLoading.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: "/imgs/postsLoading.svg",
+          className: "rounded bg-white mt-2 shadow-sm",
+          style: {
+            width: "100%"
+          }
+        }, i));
+      }
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         children: postsLoading
       });
       break;
 
     case "suggest":
+      for (var _i = 0; _i < 3; _i++) {
+        suggestLoading.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: "/imgs/suggestLoading.svg",
+          className: "rounded bg-white mt-2 shadow-sm",
+          style: {
+            width: "100%"
+          }
+        }, _i));
+      }
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         children: suggestLoading
       });
       break;
 
     case "profile":
-      return profileImg;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        style: {
+          textAlign: "center"
+        },
+        className: "m-neg-10",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: "/imgs/profileLoading.svg",
+          style: {
+            width: "50%"
+          }
+        })
+      });
       break;
 
     case "spinner":
