@@ -65,9 +65,12 @@ const Profile = () => {
 
     if (user?.name)
         return (
-            <div className="m-neg-10" >
+            <div className="m-neg-10">
                 <div className="d-flex justify-content-center">
-                    <img src="https://via.placeholder.com/820x312" className="cover-img" />
+                    <img
+                        src="https://via.placeholder.com/820x312"
+                        className="cover-img"
+                    />
                 </div>
                 <div className="d-flex justify-content-center">
                     <img
@@ -89,6 +92,7 @@ const Profile = () => {
                         <ImgUpload />
                     </form>
                 )}{" "}
+                {!user.is_friend ? "show add button" : "show remove button"}
                 <PostShow
                     what={`postsof/${user.id}`}
                     isCreateAvailable={id == window.Laravel.user.id}

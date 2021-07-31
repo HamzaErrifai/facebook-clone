@@ -4,6 +4,7 @@ function Loading(props) {
     const { what } = props;
     const postsLoading = [];
     const suggestLoading = [];
+    
     switch (what) {
         case "post":
             for (let i = 0; i < 3; i++)

@@ -3568,7 +3568,7 @@ var Profile = function Profile() {
       encType: "multipart/form-data",
       onSubmit: storePhoto,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_ImgUpload__WEBPACK_IMPORTED_MODULE_4__.default, {})
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), " ", !user.is_friend ? "show add button" : "show remove button", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
       what: "postsof/".concat(user.id),
       isCreateAvailable: id == window.Laravel.user.id
     })]

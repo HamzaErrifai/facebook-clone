@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Friend;
 use App\Models\User;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\New_;
+
 
 class UserController extends Controller
 {
@@ -108,8 +107,22 @@ class UserController extends Controller
     public function getUser($id)
     {
         $user = User::find($id);
+        $refUser = $user->toArray();
+        $friends = $this->getFriends();
+
+        foreach ($friends as $friend) {
+            if ($friend->id == $id) {
+                $isfriend = true;
+                break;
+            }
+            $isfriend = false;
+        }
+
+        $user = array_merge($refUser, ['is_friend' => $isfriend]);
+
         return $user;
     }
+
     public function getUsers()
     {
         $users = User::all();
@@ -142,7 +155,7 @@ class UserController extends Controller
         return $friends;
     }
 
-    public function getAllFriends()
+    public function getAllFriends() //temporary function
     {
         return Friend::all();
     }
