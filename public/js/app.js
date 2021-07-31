@@ -3020,7 +3020,7 @@ function Suggestion(props) {
   }, []);
   if (showSuggestion) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/profile/".concat(data.id),
-    className: "list-group-item text-dark text-decoration-none border rounded mb-2 bg-white",
+    className: "list-group-item text-dark text-decoration-none border rounded mt-2 shadow-sm bg-white border-0",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "d-flex flex-row",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
