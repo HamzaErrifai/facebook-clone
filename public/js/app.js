@@ -2986,6 +2986,11 @@ function Suggestion(props) {
       hideAddBtn = _useState2[0],
       setHideAddBtn = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)( false || what == "friends"),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showSuggestion = _useState4[0],
+      setShowSuggestion = _useState4[1];
+
   var handleMouseEnter = function handleMouseEnter(e) {
     e.target.children[0].classList.add("show");
   };
@@ -3006,14 +3011,16 @@ function Suggestion(props) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/friends").then(function (resp) {
-      setHideAddBtn(resp.data.find(function (element) {
+      var isFriend = resp.data.find(function (element) {
         return element.id == data.id;
-      }) ? true : false);
+      });
+      setHideAddBtn(isFriend);
+      setShowSuggestion(!isFriend || what == "friends");
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  if (showSuggestion) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/profile/".concat(data.id),
-    className: "list-group-item text-dark text-decoration-none border rounded bg-white mt-2 shadow-sm",
+    className: "list-group-item text-dark text-decoration-none border rounded mb-2 bg-white",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "d-flex flex-row",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -3039,6 +3046,7 @@ function Suggestion(props) {
       })]
     })
   });
+  return null;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Suggestion);
