@@ -2131,8 +2131,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Comment(props) {
-  var data = props.data;
-  console.log(data.id, data);
+  var data = props.data; // console.log(data.id, data);
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "p-1",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -2210,9 +2210,7 @@ var CommentList = /*#__PURE__*/function (_Component) {
     value: function render() {
       var commentList = [];
 
-      for (var i = 0; i < ((_this$props$data = this.props.data) === null || _this$props$data === void 0 ? void 0 : _this$props$data.length); i++) {
-        var _this$props$data;
-
+      for (var i = 0; i < this.props.data.length; i++) {
         commentList.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Comment__WEBPACK_IMPORTED_MODULE_1__.default, {
           data: this.props.data[i]
         }, this.props.data[i].id));
@@ -2860,7 +2858,9 @@ var PostShow = /*#__PURE__*/function (_Component) {
           }, elm.id);
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_utils_NoWhat__WEBPACK_IMPORTED_MODULE_5__.default, {
           what: "posts"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_6__.default, {})]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_6__.default, {
+          what: "post"
+        })]
       });
     }
   }]);
@@ -3014,7 +3014,7 @@ function Suggestion(props) {
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/profile/".concat(data.id),
-    className: "list-group-item text-dark text-decoration-none border rounded mb-2 bg-white",
+    className: "list-group-item text-dark text-decoration-none border rounded bg-white mt-2 shadow-sm",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "d-flex flex-row",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -3156,7 +3156,9 @@ var SuggestionsList = /*#__PURE__*/function (_Component) {
         });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {});
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_utils_Loading__WEBPACK_IMPORTED_MODULE_2__.default, {
+        what: "suggest"
+      });
     }
   }]);
 
@@ -3730,18 +3732,88 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Loading() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "d-flex justify-content-center mt-2",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "spinner-border text-primary",
-      role: "status",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: "sr-only",
-        children: "Loading..."
-      })
-    })
-  });
+function Loading(props) {
+  var what = props.what;
+  var postsLoading = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/postsLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/postsLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/postsLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  })];
+  var suggestLoading = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/suggestLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/suggestLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+    src: "/imgs/suggestLoading.svg",
+    className: "rounded bg-white mt-2 shadow-sm",
+    style: {
+      width: "100%"
+    }
+  })];
+
+  switch (what) {
+    case "post":
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: postsLoading
+      });
+      break;
+
+    case "suggest":
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: suggestLoading
+      });
+      break;
+
+    case "spinner":
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "d-flex justify-content-center mt-2",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "spinner-border text-primary",
+          role: "status",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "sr-only",
+            children: "Loading..."
+          })
+        })
+      });
+      break;
+
+    default:
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "d-flex justify-content-center mt-2",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "spinner-border text-primary",
+          role: "status",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "sr-only",
+            children: "Loading..."
+          })
+        })
+      });
+      break;
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loading);

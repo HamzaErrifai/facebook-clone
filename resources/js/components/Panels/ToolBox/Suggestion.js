@@ -36,7 +36,7 @@ function Suggestion(props) {
     return (
         <Link
             to={`/profile/${data.id}`}
-            className="list-group-item text-dark text-decoration-none border rounded mb-2 bg-white"
+            className="list-group-item text-dark text-decoration-none border rounded bg-white mt-2 shadow-sm"
         >
             <div className="d-flex flex-row">
                 <div className="p-2">

@@ -4,7 +4,7 @@ import Comment from "./Comment";
 export class CommentList extends Component {
     render() {
         let commentList = [];
-        for (let i = 0; i < this.props.data?.length; i++)
+        for (let i = 0; i < this.props.data.length; i++)
             commentList.push(
                 <Comment
                     key={this.props.data[i].id}

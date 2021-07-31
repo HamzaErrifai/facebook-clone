@@ -119,6 +119,7 @@ class PostController extends Controller
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
             $comments = Comment::where('post_id', $post->id)->get();
+            
             $post_to_send = array_merge($user->toArray(), $post->toArray());
 
             $isLikedByCurrentUser = (Like::select('id')

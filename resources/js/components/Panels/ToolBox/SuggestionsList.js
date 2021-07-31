@@ -46,7 +46,7 @@ export class SuggestionsList extends Component {
                 </div>
             );
         }
-        return <Loading />;
+        return <Loading what='suggest' />;
     }
 }
 

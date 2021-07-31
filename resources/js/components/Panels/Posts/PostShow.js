@@ -68,7 +68,7 @@ export class PostShow extends Component {
                         <NoWhat what="posts" />
                     )
                 ) : (
-                    <Loading />
+                    <Loading what="post" />
                 )}
             </div>
         );
