@@ -3004,6 +3004,7 @@ function Suggestion(props) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addfriend/" + data.id).then(function (resp) {
       //friend added
       setHideAddBtn(true);
+      setShowSuggestion(false);
     })["catch"](function (err) {
       return console.log(err);
     });

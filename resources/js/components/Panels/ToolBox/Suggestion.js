@@ -23,6 +23,7 @@ function Suggestion(props) {
             .then((resp) => {
                 //friend added
                 setHideAddBtn(true);
+                setShowSuggestion(false);
             })
             .catch((err) => console.log(err));
     };
