@@ -2,6 +2,7 @@ import React from "react";
 
 function Comment(props) {
     const { data } = props;
+    console.log(data)
 
     return (
         <div className="p-1">

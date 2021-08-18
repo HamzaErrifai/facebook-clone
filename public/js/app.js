@@ -2132,6 +2132,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Comment(props) {
   var data = props.data;
+  console.log(data);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "p-1",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -2574,42 +2575,9 @@ var Post = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var data = this.props.data;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "card shadow-sm rounded mb-2 mt-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "modal popup-container",
-          id: "commentsModal",
-          tabIndex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalCenterTitle",
-          "aria-hidden": "true",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "modal-dialog modal-dialog-centered",
-            role: "document",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "modal-content shadow border-0",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "modal-header",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
-                  className: "modal-title",
-                  id: "exampleModalLongTitle",
-                  children: "Comments"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                  type: "button",
-                  className: "close",
-                  "data-dismiss": "modal",
-                  "aria-label": "Close",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                    "aria-hidden": "true",
-                    children: "\xD7"
-                  })
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                className: "modal-body"
-              })]
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "card-body",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "d-flex justify-content-between",
@@ -2691,8 +2659,14 @@ var Post = /*#__PURE__*/function (_Component) {
                 children: [this.state.commentsCount, " comments"]
               })]
             })]
+          }), data.comments.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {
+              "class": "solid"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CommentList__WEBPACK_IMPORTED_MODULE_3__.default, {
+              data: data.comments
+            })]
           })]
-        })]
+        })
       }, data.id);
     }
   }]);
@@ -2843,12 +2817,13 @@ var PostShow = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var shownPosts = this.state.posts.reverse();
+      var shownPosts = this.state.posts;
+      shownPosts = shownPosts.reverse();
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "container post-show-container dummy-push mt-2 mb-2",
         children: [this.props.isCreateAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
           setPosts: this.setPosts
-        }), shownPosts && !this.state.isLoading ? (shownPosts === null || shownPosts === void 0 ? void 0 : shownPosts.length) > 0 ? shownPosts.map(function (elm) {
+        }), shownPosts && !this.state.isLoading ? shownPosts.length > 0 ? shownPosts.map(function (elm) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
             data: elm,
             removePost: _this2.removePost

@@ -50,14 +50,15 @@ export class PostShow extends Component {
     }
 
     render() {
-        let shownPosts = this.state.posts.reverse();
+        let shownPosts = this.state.posts;
+        shownPosts = shownPosts.reverse();
         return (
             <div className="container post-show-container dummy-push mt-2 mb-2">
                 {this.props.isCreateAvailable && (
                     <CreatePost setPosts={this.setPosts} />
                 )}
                 {shownPosts && !this.state.isLoading ? (
-                    shownPosts?.length > 0 ? (
+                    shownPosts.length > 0 ? (
                         shownPosts.map((elm) => (
                             <Post
                                 key={elm.id}
