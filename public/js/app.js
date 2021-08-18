@@ -2605,10 +2605,7 @@ var Post = /*#__PURE__*/function (_Component) {
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                className: "modal-body",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CommentList__WEBPACK_IMPORTED_MODULE_3__.default, {
-                  data: data.comments
-                })
+                className: "modal-body"
               })]
             })
           })
@@ -2780,7 +2777,7 @@ var PostShow = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "setPosts", function (post) {
       _this.setState({
-        posts: _this.state.posts.concat(post).reverse()
+        posts: _this.state.posts.concat(post)
       });
     });
 
@@ -2811,7 +2808,7 @@ var PostShow = /*#__PURE__*/function (_Component) {
               }
 
               if (_this.mounted) _this.setState({
-                posts: api.data.reverse(),
+                posts: api.data,
                 isLoading: false
               });
 
@@ -2846,11 +2843,12 @@ var PostShow = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var shownPosts = this.state.posts.reverse();
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "container post-show-container dummy-push mt-2 mb-2",
         children: [this.props.isCreateAvailable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CreatePost__WEBPACK_IMPORTED_MODULE_4__.default, {
           setPosts: this.setPosts
-        }), this.state.posts && !this.state.isLoading ? this.state.posts.length > 0 ? this.state.posts.map(function (elm) {
+        }), shownPosts && !this.state.isLoading ? (shownPosts === null || shownPosts === void 0 ? void 0 : shownPosts.length) > 0 ? shownPosts.map(function (elm) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Post__WEBPACK_IMPORTED_MODULE_3__.default, {
             data: elm,
             removePost: _this2.removePost
@@ -3499,9 +3497,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Profile = function Profile() {
+  //#region vars
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)(),
       _useParams$id = _useParams.id,
-      id = _useParams$id === void 0 ? window.Laravel.user.id : _useParams$id;
+      id = _useParams$id === void 0 ? window.Laravel.user.id : _useParams$id; //user shown
+
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3512,6 +3512,47 @@ var Profile = function Profile() {
       _useState4 = _slicedToArray(_useState3, 2),
       showUpload = _useState4[0],
       setShowUpload = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isFriend = _useState6[0],
+      setIsFriend = _useState6[1]; //#endregion
+  // console.log("user: ", user.id)
+  //#region Methods
+
+
+  var handleAddFriend = function handleAddFriend(e) {
+    e.preventDefault();
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addfriend/" + user.id).then(function (resp) {
+      //friend added
+      setIsFriend(true);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
+  var handleRemoveFriend = function handleRemoveFriend(e) {
+    e.preventDefault();
+    sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire("Deleted!", "Your file has been deleted.", "success");
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/removefriend/" + user.id).then(function (resp) {
+          //friend deleted
+          setIsFriend(false);
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    });
+  };
 
   var handleShowUpload = function handleShowUpload() {
     setShowUpload(!showUpload);
@@ -3544,13 +3585,17 @@ var Profile = function Profile() {
         });
       }
     });
-  };
+  }; //#endregion
+  //#region useEffect
+
 
   if (Number.isInteger(Number.parseInt(id))) (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user/" + id).then(function (resp) {
       setUser(resp.data);
+      setIsFriend(user.is_friend);
     });
-  }, []);
+  }, []); //#endregion
+
   if (user !== null && user !== void 0 && user.name) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "m-neg-10",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -3577,7 +3622,18 @@ var Profile = function Profile() {
       encType: "multipart/form-data",
       onSubmit: storePhoto,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_ImgUpload__WEBPACK_IMPORTED_MODULE_4__.default, {})
-    }), " ", !user.is_friend ? "show add button" : "show remove button", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "text-center",
+      children: isFriend ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+        className: "btn btn-primary",
+        onClick: handleAddFriend,
+        children: "Add Friend"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+        className: "btn btn-danger",
+        onClick: handleRemoveFriend,
+        children: "Remove Friend"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
       what: "postsof/".concat(user.id),
       isCreateAvailable: id == window.Laravel.user.id
     })]

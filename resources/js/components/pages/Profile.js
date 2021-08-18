@@ -7,10 +7,50 @@ import ImgUpload from "../utils/ImgUpload";
 import Loading from "../utils/Loading";
 
 const Profile = () => {
+    //#region vars
     const { id = window.Laravel.user.id } = useParams();
+    //user shown
     const [user, setUser] = useState({});
     const [showUpload, setShowUpload] = useState(false);
+    const [isFriend, setIsFriend] = useState(false);
+    //#endregion
 
+    // console.log("user: ", user.id)
+
+    //#region Methods
+    const handleAddFriend = (e) => {
+        e.preventDefault();
+        axios
+            .post("/api/addfriend/" + user.id)
+            .then((resp) => {
+                //friend added
+                setIsFriend(true);
+            })
+            .catch((err) => console.log(err));
+    };
+    const handleRemoveFriend = (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                axios
+                    .delete("/api/removefriend/" + user.id)
+                    .then((resp) => {
+                        //friend deleted
+                        setIsFriend(false);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    };
     const handleShowUpload = () => {
         setShowUpload(!showUpload);
     };
@@ -55,13 +95,17 @@ const Profile = () => {
                 }
             });
     };
+    //#endregion
 
+    //#region useEffect
     if (Number.isInteger(Number.parseInt(id)))
         useEffect(() => {
             axios.get("/api/user/" + id).then((resp) => {
                 setUser(resp.data);
+                setIsFriend(user.is_friend);
             });
         }, []);
+    //#endregion
 
     if (user?.name)
         return (
@@ -91,8 +135,24 @@ const Profile = () => {
                     >
                         <ImgUpload />
                     </form>
-                )}{" "}
-                {!user.is_friend ? "show add button" : "show remove button"}
+                )}
+                <div className="text-center">
+                    {isFriend ? (
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleAddFriend}
+                        >
+                            Add Friend
+                        </button>
+                    ) : (
+                        <button
+                            className="btn btn-danger"
+                            onClick={handleRemoveFriend}
+                        >
+                            Remove Friend
+                        </button>
+                    )}
+                </div>
                 <PostShow
                     what={`postsof/${user.id}`}
                     isCreateAvailable={id == window.Laravel.user.id}

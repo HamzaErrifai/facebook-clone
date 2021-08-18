@@ -145,6 +145,22 @@ class UserController extends Controller
 
         return Response()->json(['etat' => true]);
     }
+
+    public function removeFriend($idFriend)
+    {
+        //Find the friend to the current user 
+        $friendship1 = Friend::where([['user_id', "=", Auth::user()->id], ['friend_id', '=', $idFriend]]);
+        $friendship1->delete();
+
+        //Find the current user to the friend
+        $friendship2 = Friend::where([['user_id', "=", $idFriend], ['friend_id', '=', Auth::user()->id]]);
+        $friendship2->delete();
+
+        return Response()->json(['etat' => true]);
+    }
+
+
+
     //returns a list of friends of the current user 
     public function getFriends()
     {

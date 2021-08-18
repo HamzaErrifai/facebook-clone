@@ -16,7 +16,7 @@ export class PostShow extends Component {
 
     setPosts = (post) => {
         this.setState({
-            posts: this.state.posts.concat(post).reverse(),
+            posts: this.state.posts.concat(post),
         });
     };
 
@@ -35,7 +35,7 @@ export class PostShow extends Component {
         }
         if (this.mounted)
             this.setState({
-                posts: api.data.reverse(),
+                posts: api.data,
                 isLoading: false,
             });
     };
@@ -50,14 +50,15 @@ export class PostShow extends Component {
     }
 
     render() {
+        let shownPosts = this.state.posts.reverse();
         return (
             <div className="container post-show-container dummy-push mt-2 mb-2">
                 {this.props.isCreateAvailable && (
                     <CreatePost setPosts={this.setPosts} />
                 )}
-                {this.state.posts && !this.state.isLoading ? (
-                    this.state.posts.length > 0 ? (
-                        this.state.posts.map((elm) => (
+                {shownPosts && !this.state.isLoading ? (
+                    shownPosts?.length > 0 ? (
+                        shownPosts.map((elm) => (
                             <Post
                                 key={elm.id}
                                 data={elm}

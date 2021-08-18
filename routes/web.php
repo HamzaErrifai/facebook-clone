@@ -29,6 +29,7 @@ Route::get('/api/suggestions', [UserController::class, 'getSuggestions']);
 Route::get('/api/friends', [UserController::class, 'getFriends']);
 Route::get('/api/allfriendships', [UserController::class, 'getAllFriends']);
 Route::post('/api/addfriend/{idFriend}', [UserController::class, 'addFriend']);
+Route::delete('/api/removefriend/{idFriend}', [UserController::class, 'removeFriend']);
 
 #posts
 Route::get('/api/posts', [PostController::class, 'getPosts']);

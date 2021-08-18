@@ -108,7 +108,7 @@ export class Post extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <CommentList data={data.comments} />
+                                {/* <CommentList data={data.comments} /> */}
                             </div>
                         </div>
                     </div>
