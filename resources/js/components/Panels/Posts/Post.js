@@ -164,10 +164,8 @@ export class Post extends Component {
                     </div>
                     {data.comments.length > 0 && (
                         <div>
-                            <hr class="solid"></hr>
-                            {/* <div className="modal-body"> */}
+                            <hr className="solid"></hr>
                             <CommentList data={data.comments} />
-                            {/* </div> */}
                         </div>
                     )}
                 </div>

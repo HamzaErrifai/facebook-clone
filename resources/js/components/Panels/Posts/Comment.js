@@ -1,18 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function Comment(props) {
     const { data } = props;
-    console.log(data)
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        axios.get("/api/user/" + data.user_id).then((resp) => {
+            setUser(resp.data);
+        });
+    }, []);
 
     return (
-        <div className="p-1">
+        <div className="p-1 mb-1">
             <img
                 className="suggest-photo user-sm-photo"
-                src="https://via.placeholder.com/250"
+                src={`storage/${user.photo}`}
             />
-            <div>
-                <span className="text-muted">{data.user_id}</span>
-                <span className="pl-3">{data.content}</span>
+            <div
+                className="bg-lightGray rounded p-2 "
+                style={{ display: "inline" }}
+            >
+                <span className="text-muted ">{user.name}</span>
+                <span className="ml-3 ">{data.content}</span>
             </div>
         </div>
     );
