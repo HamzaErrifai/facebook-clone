@@ -12,7 +12,7 @@ const Profile = () => {
     //user shown
     const [user, setUser] = useState({});
     const [showUpload, setShowUpload] = useState(false);
-    const [isFriend, setIsFriend] = useState(false);
+    const [isFriend, setIsFriend] = useState();
     //#endregion
 
     // console.log("user: ", user.id)
@@ -37,7 +37,7 @@ const Profile = () => {
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#3085d6",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Yes, Unfriend it!",
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -102,7 +102,7 @@ const Profile = () => {
         useEffect(() => {
             axios.get("/api/user/" + id).then((resp) => {
                 setUser(resp.data);
-                setIsFriend(user.is_friend);
+                setIsFriend(resp.data.is_friend);
             });
         }, []);
     //#endregion
@@ -136,23 +136,25 @@ const Profile = () => {
                         <ImgUpload />
                     </form>
                 )}
-                <div className="text-center">
-                    {isFriend ? (
-                        <button
-                            className="btn btn-primary"
-                            onClick={handleAddFriend}
-                        >
-                            Add Friend
-                        </button>
-                    ) : (
-                        <button
-                            className="btn btn-danger"
-                            onClick={handleRemoveFriend}
-                        >
-                            Remove Friend
-                        </button>
-                    )}
-                </div>
+                {user.id !== window.Laravel.user.id && (
+                    <div className="text-center">
+                        {!isFriend ? (
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleAddFriend}
+                            >
+                                Add Friend
+                            </button>
+                        ) : (
+                            <button
+                                className="btn btn-danger"
+                                onClick={handleRemoveFriend}
+                            >
+                                Unfriend
+                            </button>
+                        )}
+                    </div>
+                )}
                 <PostShow
                     what={`postsof/${user.id}`}
                     isCreateAvailable={id == window.Laravel.user.id}

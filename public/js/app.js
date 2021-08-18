@@ -3513,7 +3513,7 @@ var Profile = function Profile() {
       showUpload = _useState4[0],
       setShowUpload = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState6 = _slicedToArray(_useState5, 2),
       isFriend = _useState6[0],
       setIsFriend = _useState6[1]; //#endregion
@@ -3540,7 +3540,7 @@ var Profile = function Profile() {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, Unfriend it!"
     }).then(function (result) {
       if (result.isConfirmed) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire("Deleted!", "Your file has been deleted.", "success");
@@ -3592,7 +3592,7 @@ var Profile = function Profile() {
   if (Number.isInteger(Number.parseInt(id))) (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user/" + id).then(function (resp) {
       setUser(resp.data);
-      setIsFriend(user.is_friend);
+      setIsFriend(resp.data.is_friend);
     });
   }, []); //#endregion
 
@@ -3622,16 +3622,16 @@ var Profile = function Profile() {
       encType: "multipart/form-data",
       onSubmit: storePhoto,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_utils_ImgUpload__WEBPACK_IMPORTED_MODULE_4__.default, {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), user.id !== window.Laravel.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "text-center",
-      children: isFriend ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+      children: !isFriend ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         className: "btn btn-primary",
         onClick: handleAddFriend,
         children: "Add Friend"
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         className: "btn btn-danger",
         onClick: handleRemoveFriend,
-        children: "Remove Friend"
+        children: "Unfriend"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Panels_Posts_PostShow__WEBPACK_IMPORTED_MODULE_3__.default, {
       what: "postsof/".concat(user.id),

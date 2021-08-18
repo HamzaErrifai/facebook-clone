@@ -109,13 +109,13 @@ class UserController extends Controller
         $user = User::find($id);
         $refUser = $user->toArray();
         $friends = $this->getFriends();
+        $isfriend = false;
 
         foreach ($friends as $friend) {
             if ($friend->id == $id) {
                 $isfriend = true;
                 break;
             }
-            $isfriend = false;
         }
 
         $user = array_merge($refUser, ['is_friend' => $isfriend]);
