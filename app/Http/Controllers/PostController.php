@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -15,26 +16,7 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -56,29 +38,6 @@ class PostController extends Controller
         $post_to_send = array_merge($user->toArray(), $post->toArray());
         return Response()->json(['etat' => true, 'post' => $post_to_send]);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -118,8 +77,7 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $user = User::find($post->user_id);
             $like = Like::where('post_id', $post->id)->get();
-            $comments = Comment::where('post_id', $post->id)->get();
-            
+            $comments = $this->getPostComments($post->id);
             $post_to_send = array_merge($user->toArray(), $post->toArray());
 
             $isLikedByCurrentUser = (Like::select('id')
@@ -128,7 +86,7 @@ class PostController extends Controller
                 ])->get());
 
             $post_to_send = array_merge($post_to_send, ["like_count" => $like->count()]);
-            $post_to_send = array_merge($post_to_send, ["comment_count" => $comments->count()]);
+            $post_to_send = array_merge($post_to_send, ["comment_count" => count($comments)]);
             $post_to_send = array_merge($post_to_send, ["liked" => ($isLikedByCurrentUser->count()) > 0]);
 
             if ($isLikedByCurrentUser->count() > 0)
@@ -175,8 +133,9 @@ class PostController extends Controller
 
     public function getPostComments($id)
     {
-
-        $comments = Comment::where('post_id', $id)->get();
+        $comments = DB::select("SELECT c.id,name, photo, content 
+                                FROM users u, comments c 
+                                WHERE u.id = c.user_id and c.post_id=" . $id);
         return $comments;
     }
 

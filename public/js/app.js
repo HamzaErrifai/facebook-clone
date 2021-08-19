@@ -2124,55 +2124,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 function Comment(props) {
   var data = props.data;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-      _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user/" + data.user_id).then(function (resp) {
-      setUser(resp.data);
-    });
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "p-1 mb-1",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
       className: "suggest-photo user-sm-photo",
-      src: "storage/".concat(user.photo)
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "bg-lightGray rounded p-2 ",
-      style: {
-        display: "inline"
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "text-muted ",
-        children: user.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "ml-3 ",
+      src: "storage/".concat(data.photo)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "bg-lightGray rounded p-2 comment-holder",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-muted comment-user",
+        children: data.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "comment-content",
         children: data.content
       })]
     })]
@@ -2571,6 +2542,12 @@ var Post = /*#__PURE__*/function (_Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleCommentsBtn", function () {
+      _this.setState({
+        shouldCommentsShow: !_this.state.shouldCommentsShow
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "deleteHandle", function () {
       sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
         title: "Are you sure?",
@@ -2590,19 +2567,34 @@ var Post = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "HandleChangeComment", function (e) {
+      // e.preventDefault();
+      _this.setState({
+        commentContent: e.target.value
+      });
+
+      console.log(e.target.value);
+    });
+
     _this.state = {
       liked: _this.props.data.liked,
+      shouldCommentsShow: false,
       post: {},
       likeCount: _this.props.data.like_count,
       commentsCount: _this.props.data.comment_count,
-      optionAvailable: _this.props.data.user_id == window.Laravel.user.id
+      optionAvailable: _this.props.data.user_id == window.Laravel.user.id,
+      commentContent: ""
     };
     return _this;
-  }
+  } //#region Methods
+
 
   _createClass(Post, [{
     key: "render",
-    value: function render() {
+    value: //#endregion
+    function render() {
+      var _data$comments;
+
       var data = this.props.data;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "card shadow-sm rounded mb-2 mt-2",
@@ -2680,19 +2672,38 @@ var Post = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
               className: "btn btn-lightGray",
               type: "button",
-              "data-toggle": "modal",
-              "data-target": "#commentsModal",
+              onClick: this.handleCommentsBtn,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                 className: "far fa-comment-alt"
-              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-                children: [this.state.commentsCount, " comments"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                children: [" ", this.state.commentsCount, " comments"]
               })]
             })]
-          }), data.comments.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          }), this.state.shouldCommentsShow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "comments-container",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {
               className: "solid"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CommentList__WEBPACK_IMPORTED_MODULE_3__.default, {
-              data: data.comments
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "d-flex justify-content-between",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: "/storage/".concat(window.Laravel.user.photo),
+                className: "suggest-photo user-sm-photo"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                className: "comment-input",
+                placeholder: "Write a comment...",
+                onChange: this.HandleChangeComment,
+                onKeyDown: function onKeyDown(e) {
+                  if (e.key === "Enter") {
+                    console.log("Enter is pressed!");
+                  }
+                },
+                value: this.state.commentContent
+              })]
+            }), (data === null || data === void 0 ? void 0 : (_data$comments = data.comments) === null || _data$comments === void 0 ? void 0 : _data$comments.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "mt-2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CommentList__WEBPACK_IMPORTED_MODULE_3__.default, {
+                data: data.comments
+              })
             })]
           })]
         })
@@ -8374,7 +8385,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10{\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img{\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n.list-group-item{\r\n    padding: 2px;\r\n}\r\n.add-friend-icon {\r\n    z-index: 1;\r\n    position: relative;\r\n}\r\n\r\n\r\n/* Popup container - can be anything you want */\r\n.popup {\r\n    position: relative;\r\n    display: inline-block;\r\n    cursor: pointer;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n  }\r\n  \r\n  /* The actual popup */\r\n  .popup .popuptext {\r\n    visibility: hidden;\r\n    width: 160px;\r\n    background-color: #555;\r\n    color: #fff;\r\n    text-align: center;\r\n    border-radius: 6px;\r\n    padding: 8px 0;\r\n    position: absolute;\r\n    z-index: 1;\r\n    bottom: 125%;\r\n    left: 50%;\r\n    margin-left: -80px;\r\n  }\r\n  \r\n  /* Popup arrow */\r\n  .popup .popuptext::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 100%;\r\n    left: 50%;\r\n    margin-left: -5px;\r\n    border-width: 5px;\r\n    border-style: solid;\r\n    border-color: #555 transparent transparent transparent;\r\n  }\r\n  \r\n  /* Toggle this class - hide and show the popup */\r\n  .popup .show {\r\n    visibility: visible;\r\n    z-index: 1000;\r\n  }\r\n  \r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".post-show-container {\r\n    max-width: 50%;\r\n}\r\n\r\n.popup-container {\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n\r\n    background-image: url(\"/imgs/noisy-bg.png\") !important;\r\n    background-repeat: repeat;\r\n}\r\n\r\n.dummy-push {\r\n    margin-top: 70px !important;\r\n}\r\n.btn-lightGray {\r\n    color: gray;\r\n}\r\n.btn-lightGray:hover {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.btn-lightGray:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-sm {\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 6px 0px;\r\n    border-radius: 15px;\r\n    font-size: 8px;\r\n    text-align: center;\r\n}\r\n.btn-circle.btn-md {\r\n    width: 50px;\r\n    height: 50px;\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    font-size: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.fnt-size-15 {\r\n    font-size: 15px;\r\n}\r\n\r\n.btn-n-sm {\r\n    padding: 7px 10px;\r\n    border-radius: 25px;\r\n    text-align: center;\r\n}\r\n.btn-n-sm:hover {\r\n    background-color: rgba(211, 211, 211, 0.39);\r\n}\r\n\r\n.btn-n-sm:focus {\r\n    background-color: rgba(211, 211, 211, 0.445);\r\n    outline: none !important;\r\n    box-shadow: none;\r\n}\r\n\r\n.btn-circle.btn-xl {\r\n    width: 70px;\r\n    height: 70px;\r\n    padding: 10px 16px;\r\n    border-radius: 35px;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\n.hw-100h {\r\n    width: 100vw;\r\n    height: 90vh;\r\n}\r\n.bg-lightGray {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n}\r\n\r\n.dropleft .dropdown-toggle::before {\r\n    display: none;\r\n}\r\n\r\n.m-neg-10 {\r\n    margin-top: -10px;\r\n}\r\n\r\n.stick {\r\n    height: 100vh;\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n}\r\n\r\n.no-txt-inherit {\r\n    font-size: revert;\r\n    line-height: 150%;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 250px;\r\n    width: 0;\r\n    height: 100%;\r\n    margin-right: -250px;\r\n    overflow-y: auto;\r\n    transition: all 0.5s ease;\r\n}\r\n\r\n#sidebar-wrapper {\r\n    width: 230px;\r\n    margin-top: -10px;\r\n    font-size: 1.2em;\r\n    height: 100vh;\r\n}\r\n.list-group > a {\r\n    background-color: #f8f9fa;\r\n    border: 0;\r\n}\r\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n    color: black;\r\n    background-color: inherit;\r\n}\r\n\r\n.list-group > a:hover {\r\n    border: 0;\r\n}\r\n\r\n.suggest-photo {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n}\r\n\r\n.post-user-photo {\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.user-sm-photo {\r\n    width: 25px;\r\n    height: 25px;\r\n    border-radius: 50%;\r\n    margin-right: 10px;\r\n}\r\n\r\n.upload-input {\r\n    width: 500px;\r\n}\r\n.user-img {\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n\r\n.profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    border: solid white 8px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}\r\n.cover-img {\r\n    -o-object-position: 50% 50%;\r\n       object-position: 50% 50%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-bottom-left-radius: 25px;\r\n    border-bottom-right-radius: 25px;\r\n}\r\n\r\n.list-group-item {\r\n    padding: 2px;\r\n}\r\n.add-friend-icon {\r\n    z-index: 1;\r\n    position: relative;\r\n}\r\n\r\n/* Popup container - can be anything you want */\r\n.popup {\r\n    position: relative;\r\n    display: inline-block;\r\n    cursor: pointer;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n/* The actual popup */\r\n.popup .popuptext {\r\n    visibility: hidden;\r\n    width: 160px;\r\n    background-color: #555;\r\n    color: #fff;\r\n    text-align: center;\r\n    border-radius: 6px;\r\n    padding: 8px 0;\r\n    position: absolute;\r\n    z-index: 1;\r\n    bottom: 125%;\r\n    left: 50%;\r\n    margin-left: -80px;\r\n}\r\n.comments-container {\r\n    width: 100%;\r\n}\r\n\r\n.comment-holder {\r\n    display: inline-flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.comment-user{\r\n    font-size: .8em;\r\n    font-weight: 900;\r\n}\r\n.comment-content{\r\n    font-size: 1em;\r\n}\r\n.comment-input {\r\n    background-color: rgba(211, 211, 211, 0.315);\r\n    border: 0;\r\n    border-radius: 20px;\r\n    width: 100%;\r\n    padding: 2px 10px;\r\n}\r\n.comment-input:focus-visible {\r\n    border: 0;\r\n    outline: 0;\r\n}\r\n\r\n/* Popup arrow */\r\n.popup .popuptext::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 100%;\r\n    left: 50%;\r\n    margin-left: -5px;\r\n    border-width: 5px;\r\n    border-style: solid;\r\n    border-color: #555 transparent transparent transparent;\r\n}\r\n\r\n/* Toggle this class - hide and show the popup */\r\n.popup .show {\r\n    visibility: visible;\r\n    z-index: 1000;\r\n}\r\n\r\n@media screen and (max-width: 895px) {\r\n    .post-show-container {\r\n        max-width: 90%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

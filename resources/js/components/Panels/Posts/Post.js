@@ -10,13 +10,15 @@ export class Post extends Component {
 
         this.state = {
             liked: this.props.data.liked,
+            shouldCommentsShow: false,
             post: {},
             likeCount: this.props.data.like_count,
             commentsCount: this.props.data.comment_count,
             optionAvailable: this.props.data.user_id == window.Laravel.user.id,
+            commentContent: "",
         };
     }
-
+    //#region Methods
     handleLikeClick = () => {
         if (this.state.liked) {
             //dislike
@@ -54,6 +56,12 @@ export class Post extends Component {
         }
     };
 
+    handleCommentsBtn = () => {
+        this.setState({
+            shouldCommentsShow: !this.state.shouldCommentsShow,
+        });        
+    };
+
     deleteHandle = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -72,6 +80,15 @@ export class Post extends Component {
             }
         });
     };
+
+    HandleChangeComment = (e) => {
+        // e.preventDefault();
+        this.setState({
+            commentContent: e.target.value,
+        });
+        console.log(e.target.value);
+    };
+    //#endregion
 
     render() {
         const { data } = this.props;
@@ -155,17 +172,37 @@ export class Post extends Component {
                         <button
                             className="btn btn-lightGray"
                             type="button"
-                            data-toggle="modal"
-                            data-target="#commentsModal"
+                            onClick={this.handleCommentsBtn}
                         >
-                            <i className="far fa-comment-alt"></i>{" "}
-                            <span>{this.state.commentsCount} comments</span>
+                            <i className="far fa-comment-alt"></i>
+                            <span> {this.state.commentsCount} comments</span>
                         </button>
                     </div>
-                    {data.comments.length > 0 && (
-                        <div>
+                    {this.state.shouldCommentsShow && (
+                        <div className="comments-container">
                             <hr className="solid"></hr>
-                            <CommentList data={data.comments} />
+                            <div className="d-flex justify-content-between">
+                                <img
+                                    src={`/storage/${window.Laravel.user.photo}`}
+                                    className="suggest-photo user-sm-photo"
+                                />
+                                <input
+                                    className="comment-input"
+                                    placeholder="Write a comment..."
+                                    onChange={this.HandleChangeComment}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            console.log("Enter is pressed!");
+                                        }
+                                    }}
+                                    value={this.state.commentContent}
+                                ></input>
+                            </div>
+                            {data?.comments?.length > 0 && (
+                                <div className="mt-2">
+                                    <CommentList data={data.comments} />
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>
