@@ -1,4 +1,4 @@
-# Simple CRUD application using Laravel
+# Facebook clone using Laravel + ReactJs
 ## Installation:
 - Run git clone https://github.com/HamzaErrifai/simpleBlog
 - Run composer install
